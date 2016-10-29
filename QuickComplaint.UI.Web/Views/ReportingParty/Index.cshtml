@@ -1,0 +1,105 @@
+
+@model IEnumerable<QuickComplaint.Domain.Entities.ReportingParty>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div ng-controller="reportingPartyIndexCtrl as vm">
+    <div style="float: right" class="btn-group" dropdown>
+        <button type="button" class="btn btn-primary">{{vm.pageSize}} Items per page</button>
+        <button type="button" class="btn dropdown-toggle">
+            <span class="caret"></span>
+            <span class="sr-only">Split button!</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#" ng-click="vm.pageSize=10;vm.pageChanged()">10</a></li>
+            <li><a href="#" ng-click="vm.pageSize=20;vm.pageChanged()">20</a></li>
+            <li><a href="#" ng-click="vm.pageSize=50;vm.pageChanged()">50</a></li>
+        </ul>
+    </div>
+    <table class="table">
+        <tr>
+
+          <th>
+                Id
+          </th>     
+
+          <th>
+                Name
+          </th>     
+
+          <th>
+                Email
+          </th>     
+
+          <th>
+                Phone1
+          </th>     
+
+          <th>
+                Phone1 Type Id
+          </th>     
+
+          <th>
+                Phone2
+          </th>     
+
+          <th>
+                Phone2 Type Id
+          </th>     
+
+          <th></th>
+        </tr>
+
+
+        <tr ng-repeat="item in vm.pageableResults.results">
+
+          <td>
+                {{item.id}}
+          </td>     
+
+          <td>
+                {{item.name}}
+          </td>     
+
+          <td>
+                {{item.email}}
+          </td>     
+
+          <td>
+                {{item.phone1}}
+          </td>     
+
+          <td>
+                {{item.phone1TypeId}}
+          </td>     
+
+          <td>
+                {{item.phone2}}
+          </td>     
+
+          <td>
+                {{item.phone2TypeId}}
+          </td>     
+
+          <td>
+                <a href="" ng-click="vm.deleteReportingParty(item.id)"><i class="fa fa-trash-o"></i></a>
+                <a href="/ReportingParty/Edit/{{item.id}}">Edit</a>
+            </td>
+        </tr>
+
+
+    </table>
+    <pagination total-items="vm.pageableResults.totalCount" items-per-page="vm.pageSize" ng-model="vm.currentPage" ng-change="vm.pageChanged()" max-size="10" class="pagination-sm" boundary-links="true"></pagination>
+</div>
+@section Scripts {
+    <script src="~/app/ReportingParty/index.js"></script>
+    <script src="~/app/services/ReportingPartyDataService.js"></script>
+}

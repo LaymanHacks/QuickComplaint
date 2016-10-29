@@ -1,0 +1,65 @@
+
+@model IEnumerable<QuickComplaint.Domain.Entities.PhoneType>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div ng-controller="phoneTypeIndexCtrl as vm">
+    <div style="float: right" class="btn-group" dropdown>
+        <button type="button" class="btn btn-primary">{{vm.pageSize}} Items per page</button>
+        <button type="button" class="btn dropdown-toggle">
+            <span class="caret"></span>
+            <span class="sr-only">Split button!</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#" ng-click="vm.pageSize=10;vm.pageChanged()">10</a></li>
+            <li><a href="#" ng-click="vm.pageSize=20;vm.pageChanged()">20</a></li>
+            <li><a href="#" ng-click="vm.pageSize=50;vm.pageChanged()">50</a></li>
+        </ul>
+    </div>
+    <table class="table">
+        <tr>
+
+          <th>
+                Id
+          </th>     
+
+          <th>
+                Name
+          </th>     
+
+          <th></th>
+        </tr>
+
+
+        <tr ng-repeat="item in vm.pageableResults.results">
+
+          <td>
+                {{item.id}}
+          </td>     
+
+          <td>
+                {{item.name}}
+          </td>     
+
+          <td>
+                <a href="" ng-click="vm.deletePhoneType(item.id)"><i class="fa fa-trash-o"></i></a>
+                <a href="/PhoneType/Edit/{{item.id}}">Edit</a>
+            </td>
+        </tr>
+
+
+    </table>
+    <pagination total-items="vm.pageableResults.totalCount" items-per-page="vm.pageSize" ng-model="vm.currentPage" ng-change="vm.pageChanged()" max-size="10" class="pagination-sm" boundary-links="true"></pagination>
+</div>
+@section Scripts {
+    <script src="~/app/PhoneType/index.js"></script>
+    <script src="~/app/services/PhoneTypeDataService.js"></script>
+}
