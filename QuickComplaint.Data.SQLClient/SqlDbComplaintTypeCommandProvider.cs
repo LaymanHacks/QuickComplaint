@@ -24,7 +24,7 @@ namespace QuickComplaint.Data.SqlDbCommandProvider
             ComplaintTypeDbConnectionHolder = new DbConnectionHolder(DbConnectionName);
         }
 
-        public string DbConnectionName => "Merlin_NewConnection"; 
+        public string DbConnectionName => "QuickComplaintConnection"; 
 
         public DbConnectionHolder ComplaintTypeDbConnectionHolder { get; }
 

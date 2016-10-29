@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="QuickComplaint.Web.UI.WebApiApplication" Language="C#" %>

@@ -34,8 +34,8 @@ BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[Complaint_Update]
 (
 @ComplaintTypeId Int, 
-@Description NVarChar, 
-@LocationDetails NVarChar, 
+@Description NVarChar(2000), 
+@LocationDetails NVarChar(2000), 
 @ReportingPartyId Int, 
 @Id Int
   )
@@ -53,8 +53,8 @@ WHERE [Id]=@Id'
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[Complaint_Update]
 (
 @ComplaintTypeId Int, 
-@Description NVarChar, 
-@LocationDetails NVarChar, 
+@Description NVarChar(2000), 
+@LocationDetails NVarChar(2000), 
 @ReportingPartyId Int, 
 @Id Int
   )
@@ -110,8 +110,8 @@ BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[Complaint_Insert]
 (
 @ComplaintTypeId Int, 
-@Description NVarChar, 
-@LocationDetails NVarChar, 
+@Description NVarChar(2000), 
+@LocationDetails NVarChar(2000), 
 @ReportingPartyId Int
   )
 
@@ -124,8 +124,8 @@ INSERT INTO [Complaint] ([ComplaintTypeId], [Description], [LocationDetails], [R
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[Complaint_Insert]
 (
 @ComplaintTypeId Int, 
-@Description NVarChar, 
-@LocationDetails NVarChar, 
+@Description NVarChar(2000), 
+@LocationDetails NVarChar(2000), 
 @ReportingPartyId Int
   )
 
@@ -143,7 +143,7 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Co
 BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[Complaint_GetDataPageable]
 (
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -169,7 +169,7 @@ SET @sql = ''SELECT [Id], [ComplaintTypeId], [Description], [LocationDetails], [
   BEGIN
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[Complaint_GetDataPageable]
 (
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -292,7 +292,7 @@ BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[Complaint_GetDataByComplaintTypeIdPageable]
 (
 @ComplaintTypeId Int, 
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -317,7 +317,7 @@ EXEC sp_executesql @sql, N''@INComplaintTypeId Int,@inStartRowIndex Int,@inPageS
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[Complaint_GetDataByComplaintTypeIdPageable]
 (
 @ComplaintTypeId Int, 
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -412,7 +412,7 @@ BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[Complaint_GetDataByReportingPartyIdPageable]
 (
 @ReportingPartyId Int, 
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -437,7 +437,7 @@ EXEC sp_executesql @sql, N''@INReportingPartyId Int,@inStartRowIndex Int,@inPage
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[Complaint_GetDataByReportingPartyIdPageable]
 (
 @ReportingPartyId Int, 
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -523,7 +523,7 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Co
 BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ComplaintType_Update]
 (
-@Name NVarChar, 
+@Name NVarChar(160), 
 @Id Int
   )
 
@@ -536,7 +536,7 @@ WHERE [Id]=@Id'
   BEGIN
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ComplaintType_Update]
 (
-@Name NVarChar, 
+@Name NVarChar(160), 
 @Id Int
   )
 
@@ -587,7 +587,7 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Co
 BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ComplaintType_Insert]
 (
-@Name NVarChar
+@Name NVarChar(160)
   )
 
   AS
@@ -598,7 +598,7 @@ INSERT INTO [ComplaintType] ([Name]) VALUES (@Name);SELECT SCOPE_IDENTITY();'
   BEGIN
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ComplaintType_Insert]
 (
-@Name NVarChar
+@Name NVarChar(160)
   )
 
   AS
@@ -615,7 +615,7 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Co
 BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ComplaintType_GetDataPageable]
 (
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -641,7 +641,7 @@ SET @sql = ''SELECT [Id], [Name] FROM (
   BEGIN
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ComplaintType_GetDataPageable]
 (
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -755,7 +755,7 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Ph
 BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[PhoneType_Update]
 (
-@Name NVarChar, 
+@Name NVarChar(100), 
 @Id Int
   )
 
@@ -768,7 +768,7 @@ WHERE [Id]=@Id'
   BEGIN
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[PhoneType_Update]
 (
-@Name NVarChar, 
+@Name NVarChar(100), 
 @Id Int
   )
 
@@ -819,7 +819,7 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Ph
 BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[PhoneType_Insert]
 (
-@Name NVarChar
+@Name NVarChar(100)
   )
 
   AS
@@ -830,7 +830,7 @@ INSERT INTO [PhoneType] ([Name]) VALUES (@Name);SELECT SCOPE_IDENTITY();'
   BEGIN
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[PhoneType_Insert]
 (
-@Name NVarChar
+@Name NVarChar(100)
   )
 
   AS
@@ -847,7 +847,7 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Ph
 BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[PhoneType_GetDataPageable]
 (
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -873,7 +873,7 @@ SET @sql = ''SELECT [Id], [Name] FROM (
   BEGIN
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[PhoneType_GetDataPageable]
 (
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -987,11 +987,11 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Re
 BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_Update]
 (
-@Name NVarChar, 
-@Email NVarChar, 
-@Phone1 NVarChar, 
+@Name NVarChar(100), 
+@Email NVarChar(256), 
+@Phone1 NVarChar(100), 
 @Phone1TypeId Int, 
-@Phone2 NVarChar, 
+@Phone2 NVarChar(100), 
 @Phone2TypeId Int, 
 @Id Int
   )
@@ -1010,11 +1010,11 @@ WHERE [Id]=@Id'
   BEGIN
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_Update]
 (
-@Name NVarChar, 
-@Email NVarChar, 
-@Phone1 NVarChar, 
+@Name NVarChar(100), 
+@Email NVarChar(256), 
+@Phone1 NVarChar(100), 
 @Phone1TypeId Int, 
-@Phone2 NVarChar, 
+@Phone2 NVarChar(100), 
 @Phone2TypeId Int, 
 @Id Int
   )
@@ -1071,11 +1071,11 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Re
 BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_Insert]
 (
-@Name NVarChar, 
-@Email NVarChar, 
-@Phone1 NVarChar, 
+@Name NVarChar(100), 
+@Email NVarChar(256), 
+@Phone1 NVarChar(100), 
 @Phone1TypeId Int, 
-@Phone2 NVarChar, 
+@Phone2 NVarChar(100), 
 @Phone2TypeId Int
   )
 
@@ -1087,11 +1087,11 @@ INSERT INTO [ReportingParty] ([Name], [Email], [Phone1], [Phone1TypeId], [Phone2
   BEGIN
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_Insert]
 (
-@Name NVarChar, 
-@Email NVarChar, 
-@Phone1 NVarChar, 
+@Name NVarChar(100), 
+@Email NVarChar(256), 
+@Phone1 NVarChar(100), 
 @Phone1TypeId Int, 
-@Phone2 NVarChar, 
+@Phone2 NVarChar(100), 
 @Phone2TypeId Int
   )
 
@@ -1109,7 +1109,7 @@ IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Re
 BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_GetDataPageable]
 (
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -1135,7 +1135,7 @@ SET @sql = ''SELECT [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [
   BEGIN
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_GetDataPageable]
 (
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -1258,7 +1258,7 @@ BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_GetDataByPhone1TypeIdPageable]
 (
 @Phone1TypeId Int, 
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -1283,7 +1283,7 @@ EXEC sp_executesql @sql, N''@INPhone1TypeId Int,@inStartRowIndex Int,@inPageSize
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_GetDataByPhone1TypeIdPageable]
 (
 @Phone1TypeId Int, 
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -1378,7 +1378,7 @@ BEGIN
 EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_GetDataByPhone2TypeIdPageable]
 (
 @Phone2TypeId Int, 
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )
@@ -1403,7 +1403,7 @@ EXEC sp_executesql @sql, N''@INPhone2TypeId Int,@inStartRowIndex Int,@inPageSize
   EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_GetDataByPhone2TypeIdPageable]
 (
 @Phone2TypeId Int, 
-@sortExpression VarChar, 
+@sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
   )

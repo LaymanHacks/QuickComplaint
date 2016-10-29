@@ -9,11 +9,10 @@
 '------------------------------------------------------------------------------
 Imports System
 Imports System.Collections.Generic
-Imports QuickComplaint.Data
-Imports QuickComplaint.Domain.Entities
+Imports QuickComplaint.Data.Entities
 
-  
- Namespace QuickComplaint.Data.Repository     
+
+Namespace QuickComplaint.Data.Repository     
     Public Interface IComplaintRepository
         Function GetData()  as ICollection(Of Complaint)
         Sub Update( ByVal complaintTypeId As Int32,  ByVal description As String,  ByVal locationDetails As String,  ByVal reportingPartyId As Int32,  ByVal id As Int32) 

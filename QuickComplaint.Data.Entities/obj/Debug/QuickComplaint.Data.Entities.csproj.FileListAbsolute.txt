@@ -1,0 +1,5 @@
+C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.Entities\bin\Debug\QuickComplaint.Data.Entities.dll
+C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.Entities\bin\Debug\QuickComplaint.Data.Entities.pdb
+C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.Entities\obj\Debug\QuickComplaint.Data.Entities.csprojResolveAssemblyReference.cache
+C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.Entities\obj\Debug\QuickComplaint.Data.Entities.dll
+C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.Entities\obj\Debug\QuickComplaint.Data.Entities.pdb

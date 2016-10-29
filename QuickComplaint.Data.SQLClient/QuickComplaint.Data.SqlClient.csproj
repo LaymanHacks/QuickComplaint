@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" xmlns:merlinFunc="urn:merlin-xslt" xmlns:msd="urn:schemas-microsoft-com:xml-msdatasource" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -46,11 +47,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SqlDbComplaintCommandProvider.cs" />
-<Compile Include="SqlDbComplaintTypeCommandProvider.cs" />
-<Compile Include="SqlDbPhoneTypeCommandProvider.cs" />
-<Compile Include="SqlDbReportingPartyCommandProvider.cs" />
-<Compile Include="SqlParameterFactory.cs" />
-
- </ItemGroup>
+    <Compile Include="SqlDbComplaintTypeCommandProvider.cs" />
+    <Compile Include="SqlDbPhoneTypeCommandProvider.cs" />
+    <Compile Include="SqlDbReportingPartyCommandProvider.cs" />
+    <Compile Include="SqlParameterFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QuickComplaint.Data\QuickComplaint.Data.vbproj">
+      <Project>{14B004DB-0D79-4719-B4AE-33CE00115AA3}</Project>
+      <Name>QuickComplaint.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

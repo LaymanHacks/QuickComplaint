@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" xmlns:merlinFunc="urn:merlin-xslt" xmlns:msd="urn:schemas-microsoft-com:xml-msdatasource" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -38,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -46,16 +48,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IDbCommandProvider\IDbComplaintCommandProvider.vb" />
-<Compile Include="Interfaces\IDbCommandProvider\IDbComplaintTypeCommandProvider.vb" />
-<Compile Include="Interfaces\IDbCommandProvider\IDbPhoneTypeCommandProvider.vb" />
-<Compile Include="Interfaces\IDbCommandProvider\IDbReportingPartyCommandProvider.vb" />
-<Compile Include="Interfaces\IRepository\IComplaintRepository.vb" />
-<Compile Include="Interfaces\IRepository\IComplaintTypeRepository.vb" />
-<Compile Include="Interfaces\IRepository\IPhoneTypeRepository.vb" />
-<Compile Include="Interfaces\IRepository\IReportingPartyRepository.vb" />
-<Compile Include="ConnectionHelper.vb" />
-<Compile Include="PagedResult.vb" />
-
-    </ItemGroup>
+    <Compile Include="Interfaces\IDbCommandProvider\IDbComplaintTypeCommandProvider.vb" />
+    <Compile Include="Interfaces\IDbCommandProvider\IDbPhoneTypeCommandProvider.vb" />
+    <Compile Include="Interfaces\IDbCommandProvider\IDbReportingPartyCommandProvider.vb" />
+    <Compile Include="Interfaces\IRepository\IComplaintRepository.vb" />
+    <Compile Include="Interfaces\IRepository\IComplaintTypeRepository.vb" />
+    <Compile Include="Interfaces\IRepository\IPhoneTypeRepository.vb" />
+    <Compile Include="Interfaces\IRepository\IReportingPartyRepository.vb" />
+    <Compile Include="ConnectionHelper.vb" />
+    <Compile Include="PagedResult.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QuickComplaint.Data.Entities\QuickComplaint.Data.Entities.csproj">
+      <Project>{07F3DEED-1B45-4CF5-9F0B-A3532E9D0B69}</Project>
+      <Name>QuickComplaint.Data.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -1,0 +1,96 @@
+@model IEnumerable<QuickComplaint.Data.Entities.Complaint>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div ng-controller="complaintIndexCtrl as vm">
+    <div style="float: right" class="btn-group" dropdown>
+        <button type="button" class="btn btn-primary">{{vm.pageSize}} Items per page</button>
+        <button type="button" class="btn dropdown-toggle">
+            <span class="caret"></span>
+            <span class="sr-only">Split button!</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="#" ng-click="vm.pageSize=10;vm.pageChanged()">10</a>
+            </li>
+            <li>
+                <a href="#" ng-click="vm.pageSize=20;vm.pageChanged()">20</a>
+            </li>
+            <li>
+                <a href="#" ng-click="vm.pageSize=50;vm.pageChanged()">50</a>
+            </li>
+        </ul>
+    </div>
+    <table class="table">
+        <tr>
+
+            <th>
+                Id
+            </th>
+
+            <th>
+                Complaint Type Id
+            </th>
+
+            <th>
+                Description
+            </th>
+
+            <th>
+                Location Details
+            </th>
+
+            <th>
+                Reporting Party Id
+            </th>
+
+            <th></th>
+        </tr>
+
+
+        <tr ng-repeat="item in vm.pageableResults.results">
+
+            <td>
+                {{item.id}}
+            </td>
+
+            <td>
+                {{item.complaintTypeId}}
+            </td>
+
+            <td>
+                {{item.description}}
+            </td>
+
+            <td>
+                {{item.locationDetails}}
+            </td>
+
+            <td>
+                {{item.reportingPartyId}}
+            </td>
+
+            <td>
+                <a href="" ng-click="vm.deleteComplaint(item.id)">
+                    <i class="fa fa-trash-o"></i>
+                </a>
+                <a href="/Complaint/Edit/{{item.id}}">Edit</a>
+            </td>
+        </tr>
+
+
+    </table>
+    <pagination total-items="vm.pageableResults.totalCount" items-per-page="vm.pageSize" ng-model="vm.currentPage" ng-change="vm.pageChanged()" max-size="10" class="pagination-sm" boundary-links="true"></pagination>
+</div>
+@section Scripts {
+    <script src="~/app/Complaint/index.js"></script>
+    <script src="~/app/services/ComplaintDataService.js"></script>
+}

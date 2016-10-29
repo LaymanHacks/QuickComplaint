@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" xmlns:msd="urn:schemas-microsoft-com:xml-msdatasource" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -50,10 +51,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbComplaintRepository.cs" />
-<Compile Include="DbComplaintTypeRepository.cs" />
-<Compile Include="DbPhoneTypeRepository.cs" />
-<Compile Include="DbReportingPartyRepository.cs" />
-
-    </ItemGroup>
+    <Compile Include="DbComplaintTypeRepository.cs" />
+    <Compile Include="DbPhoneTypeRepository.cs" />
+    <Compile Include="DbReportingPartyRepository.cs" />
+    <Compile Include="SafeDataReader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QuickComplaint.Data.Entities\QuickComplaint.Data.Entities.csproj">
+      <Project>{07F3DEED-1B45-4CF5-9F0B-A3532E9D0B69}</Project>
+      <Name>QuickComplaint.Data.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickComplaint.Data\QuickComplaint.Data.vbproj">
+      <Project>{14B004DB-0D79-4719-B4AE-33CE00115AA3}</Project>
+      <Name>QuickComplaint.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

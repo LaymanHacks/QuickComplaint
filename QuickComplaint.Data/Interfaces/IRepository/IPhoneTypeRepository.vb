@@ -10,7 +10,7 @@
 Imports System
 Imports System.Collections.Generic
 Imports QuickComplaint.Data
-Imports QuickComplaint.Domain.Entities
+Imports QuickComplaint.Data.Entities
 
   
  Namespace QuickComplaint.Data.Repository     
