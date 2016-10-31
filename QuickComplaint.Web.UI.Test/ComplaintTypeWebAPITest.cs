@@ -16,7 +16,7 @@ using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using QuickComplaint.Data.Repository;
-using QuickComplaint.Domain.Entities;
+using QuickComplaint.Data.Entities;
 using QuickComplaint.Web.UI.Controllers.Api;
 
 namespace QuickComplaint.Web.UI.Test.Controllers.Api
@@ -73,7 +73,7 @@ namespace QuickComplaint.Web.UI.Test.Controllers.Api
                  var tComplaintType = _repositoryList.Find(x => x.Id==id);
                  tComplaintType.Name = name; 
             });
-            var tempComplaintType = _repositoryList.Find(x => x.Id==id);
+            var tempComplaintType = _repositoryList.Find(x => x.Id== Id);
             var testComplaintType = new ComplaintType {
                  Id = tempComplaintType.Id, 
                  Name = tempComplaintType.Name};
@@ -140,9 +140,7 @@ namespace QuickComplaint.Web.UI.Test.Controllers.Api
                       return query.Take(pageSize).Skip((page-1)*pageSize).ToList();
                  });
 
-            _repository
-                 .Setup(it => it.GetRowCount())
-                 .Returns(_repositoryList.Count);
+          
 
             var result = _target.GetDataPageable("Id", 1, 2);
             Assert.IsTrue(result.TryGetContentValue(out expectedResult));

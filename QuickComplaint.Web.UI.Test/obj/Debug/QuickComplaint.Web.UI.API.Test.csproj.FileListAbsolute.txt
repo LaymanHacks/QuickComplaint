@@ -1,1 +1,2 @@
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Web.UI.Test\obj\Debug\QuickComplaint.Web.UI.API.Test.csprojResolveAssemblyReference.cache
+C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Web.UI.Test\obj\Debug\QuickComplaint.Web.UI.API.Test.csproj.App.config

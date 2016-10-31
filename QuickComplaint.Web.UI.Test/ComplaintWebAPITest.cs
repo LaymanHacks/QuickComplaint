@@ -16,7 +16,7 @@ using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using QuickComplaint.Data.Repository;
-using QuickComplaint.Domain.Entities;
+using QuickComplaint.Data.Entities;
 using QuickComplaint.Web.UI.Controllers.Api;
 
 namespace QuickComplaint.Web.UI.Test.Controllers.Api
