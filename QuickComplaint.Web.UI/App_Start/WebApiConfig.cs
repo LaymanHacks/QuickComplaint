@@ -20,6 +20,3 @@ namespace QuickComplaint.Web.UI
     }
 }
 
-namespace LucentDb.Web.Formatter
-{
-}

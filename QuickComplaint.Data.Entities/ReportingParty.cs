@@ -18,25 +18,22 @@ namespace QuickComplaint.Data.Entities
 
         private int _id;
         private string _name;
-        private string _phone1;
-        private int? _phone1TypeId;
-        private string _phone2;
-        private int? _phone2TypeId;
+        private string _phone;
+        private int? _phoneTypeId;
+        
 
         public ReportingParty()
         {
         }
 
-        public ReportingParty(int id, string name, string email, string phone1, int? phone1TypeId, string phone2,
-            int? phone2TypeId)
+        public ReportingParty(int id, string name, string email, string phone, int? phoneTypeId)
         {
             _id = id;
             _name = name;
             _email = email;
-            _phone1 = phone1;
-            _phone1TypeId = phone1TypeId;
-            _phone2 = phone2;
-            _phone2TypeId = phone2TypeId;
+            _phone = phone;
+            _phoneTypeId = phoneTypeId;
+         
         }
 
         public virtual Collection<Complaint> Complaints { get; set; }
@@ -76,53 +73,30 @@ namespace QuickComplaint.Data.Entities
         }
 
         /// <summary>
-        ///     Public Property Phone1
+        ///     Public Property phone
         /// </summary>
-        /// <returns>Phone1 as String</returns>
+        /// <returns>phone as String</returns>
         /// <remarks></remarks>
-        public virtual string Phone1
+        public virtual string phone
         {
-            get { return _phone1; }
-            set { _phone1 = value; }
+            get { return _phone; }
+            set { _phone = value; }
         }
 
         /// <summary>
-        ///     Public Property Phone1TypeId
+        ///     Public Property phoneTypeId
         /// </summary>
-        /// <returns>Phone1TypeId as Int32?</returns>
+        /// <returns>phoneTypeId as Int32?</returns>
         /// <remarks></remarks>
-        public virtual int? Phone1TypeId
+        public virtual int? phoneTypeId
         {
-            get { return _phone1TypeId; }
-            set { _phone1TypeId = value; }
+            get { return _phoneTypeId; }
+            set { _phoneTypeId = value; }
         }
 
 
-        public virtual PhoneType Phone1TypePhoneType { get; set; }
+        public virtual PhoneType phoneTypePhoneType { get; set; }
 
-        /// <summary>
-        ///     Public Property Phone2
-        /// </summary>
-        /// <returns>Phone2 as String</returns>
-        /// <remarks></remarks>
-        public virtual string Phone2
-        {
-            get { return _phone2; }
-            set { _phone2 = value; }
-        }
-
-        /// <summary>
-        ///     Public Property Phone2TypeId
-        /// </summary>
-        /// <returns>Phone2TypeId as Int32?</returns>
-        /// <remarks></remarks>
-        public virtual int? Phone2TypeId
-        {
-            get { return _phone2TypeId; }
-            set { _phone2TypeId = value; }
-        }
-
-
-        public virtual PhoneType Phone2TypePhoneType { get; set; }
+       
     }
 }

@@ -50,7 +50,7 @@ namespace QuickComplaint.Data.Entities
             set { _name = value; }
         }
 
-        public virtual Collection<ReportingParty> ReportingPartiesPhone1Type { get; set; }
+        public virtual Collection<ReportingParty> ReportingPartiesphoneType { get; set; }
 
 
         public virtual Collection<ReportingParty> ReportingPartiesPhone2Type { get; set; }

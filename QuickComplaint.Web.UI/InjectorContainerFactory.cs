@@ -21,6 +21,8 @@ namespace QuickComplaint.Web.UI
         {
             var container = new Container();
 
+            container.Register<IDbComplaintDetailCommandProvider, SqlDbComplaintDetailCommandProvider>();
+            container.Register<IComplaintDetailRepository, DbComplaintDetailRepository>();
 
             container.Register<IDbComplaintCommandProvider, SqlDbComplaintCommandProvider>();
             container.Register<IComplaintRepository, DbComplaintRepository>();

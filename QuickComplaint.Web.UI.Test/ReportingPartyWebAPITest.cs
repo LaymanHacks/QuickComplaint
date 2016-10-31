@@ -68,13 +68,13 @@ namespace QuickComplaint.Web.UI.Test.Controllers.Api
         {
             _repository
                  .Setup(it => it.Update(It.IsAny<String>(), It.IsAny<String>(), It.IsAny<String>(), It.IsAny<Int32?>(), It.IsAny<String>(), It.IsAny<Int32?>(), It.IsAny<Int32>()))
-                 .Callback<String, String, String, Int32?, String, Int32?, Int32>((name, email, phone1, phone1TypeId, phone2, phone2TypeId, id) => 
+                 .Callback<String, String, String, Int32?, String, Int32?, Int32>((name, email, phone, phoneTypeId, phone2, phone2TypeId, id) => 
             { 
                  var tReportingParty = _repositoryList.Find(x => x.Id==id);
                  tReportingParty.Name = name; 
                  tReportingParty.Email = email; 
-                 tReportingParty.Phone1 = phone1; 
-                 tReportingParty.Phone1TypeId = phone1TypeId; 
+                 tReportingParty.phone = phone; 
+                 tReportingParty.phoneTypeId = phoneTypeId; 
                  tReportingParty.Phone2 = phone2; 
                  tReportingParty.Phone2TypeId = phone2TypeId; 
             });
@@ -83,8 +83,8 @@ namespace QuickComplaint.Web.UI.Test.Controllers.Api
                  Id = tempReportingParty.Id, 
                  Name = tempReportingParty.Name, 
                  Email = tempReportingParty.Email, 
-                 Phone1 = tempReportingParty.Phone1, 
-                 Phone1TypeId = tempReportingParty.Phone1TypeId, 
+                 phone = tempReportingParty.phone, 
+                 phoneTypeId = tempReportingParty.phoneTypeId, 
                  Phone2 = tempReportingParty.Phone2, 
                  Phone2TypeId = tempReportingParty.Phone2TypeId};
             
@@ -117,13 +117,13 @@ namespace QuickComplaint.Web.UI.Test.Controllers.Api
         {
             _repository
                  .Setup(it => it.Insert(It.IsAny<String>(), It.IsAny<String>(), It.IsAny<String>(), It.IsAny<Int32?>(), It.IsAny<String>(), It.IsAny<Int32?>()))
-                 .Returns<String, String, String, Int32?, String, Int32?>((name, email, phone1, phone1TypeId, phone2, phone2TypeId) => 
+                 .Returns<String, String, String, Int32?, String, Int32?>((name, email, phone, phoneTypeId, phone2, phone2TypeId) => 
             { 
-                 _repositoryList.Add(new  ReportingParty (name, email, phone1, phone1TypeId, phone2, phone2TypeId));
+                 _repositoryList.Add(new  ReportingParty (name, email, phone, phoneTypeId, phone2, phone2TypeId));
             });
             
             //TODO insert values 
-            _target.Insert(new ReportingParty (name, email, phone1, phone1TypeId, phone2, phone2TypeId));
+            _target.Insert(new ReportingParty (name, email, phone, phoneTypeId, phone2, phone2TypeId));
             //Assert.AreEqual(11, _repositoryList.Count());
             //TODO fail until we update the test above
             Assert.Fail();
@@ -150,11 +150,11 @@ namespace QuickComplaint.Web.UI.Test.Controllers.Api
                           case  "Email":
                               query = new List<ReportingParty>(query.OrderBy(q => q.Email));
                               break;
-                          case  "Phone1":
-                              query = new List<ReportingParty>(query.OrderBy(q => q.Phone1));
+                          case  "phone":
+                              query = new List<ReportingParty>(query.OrderBy(q => q.phone));
                               break;
-                          case  "Phone1TypeId":
-                              query = new List<ReportingParty>(query.OrderBy(q => q.Phone1TypeId));
+                          case  "phoneTypeId":
+                              query = new List<ReportingParty>(query.OrderBy(q => q.phoneTypeId));
                               break;
                           case  "Phone2":
                               query = new List<ReportingParty>(query.OrderBy(q => q.Phone2));
@@ -190,29 +190,29 @@ namespace QuickComplaint.Web.UI.Test.Controllers.Api
         }
 
         [TestMethod()]
-        public void GetDataByPhone1TypeIdTest() 
+        public void GetDataByphoneTypeIdTest() 
         {
             _repository
-                 .Setup(it => it.GetDataByPhone1TypeId(It.IsAny<Int32>()))
-                     .Returns<Int32>((phone1TypeId) => 
+                 .Setup(it => it.GetDataByphoneTypeId(It.IsAny<Int32>()))
+                     .Returns<Int32>((phoneTypeId) => 
                  { 
-                      return _repositoryList.Where(x => x.Phone1TypeId==phone1TypeId).ToList();
+                      return _repositoryList.Where(x => x.phoneTypeId==phoneTypeId).ToList();
                  });
                 
-            var result = _target.GetDataByPhone1TypeId(phone1TypeIdValue).ToList();
-             Assert.AreEqual(_repositoryList.Where(x => x.Phone1TypeId==phone1TypeIdValue).ToList().Count, result.Count);
+            var result = _target.GetDataByphoneTypeId(phoneTypeIdValue).ToList();
+             Assert.AreEqual(_repositoryList.Where(x => x.phoneTypeId==phoneTypeIdValue).ToList().Count, result.Count);
         }
 
         [TestMethod()]
-        public void GetDataByPhone1TypeIdPageableTest()
+        public void GetDataByphoneTypeIdPageableTest()
         {
             PagedResult<ReportingParty> expectedResult;
 
             _repository
-                 .Setup(it => it.GetDataByPhone1TypeIdPageable(It.IsAny<Int32>(), It.IsAny<String>(), It.IsAny<Int32>(), It.IsAny<Int32>()))
-                 .Returns<Int32, String, Int32, Int32>((phone1TypeId, sortExpression, page, pageSize) => 
+                 .Setup(it => it.GetDataByphoneTypeIdPageable(It.IsAny<Int32>(), It.IsAny<String>(), It.IsAny<Int32>(), It.IsAny<Int32>()))
+                 .Returns<Int32, String, Int32, Int32>((phoneTypeId, sortExpression, page, pageSize) => 
                  { 
-                      var query = _repositoryList.Where(x => x.Phone1TypeId==phone1TypeId);
+                      var query = _repositoryList.Where(x => x.phoneTypeId==phoneTypeId);
                       switch (sortExpression)
                       {
                           case  "Id":
@@ -224,11 +224,11 @@ namespace QuickComplaint.Web.UI.Test.Controllers.Api
                           case  "Email":
                               query = new List<ReportingParty>(query.OrderBy(q => q.Email));
                               break;
-                          case  "Phone1":
-                              query = new List<ReportingParty>(query.OrderBy(q => q.Phone1));
+                          case  "phone":
+                              query = new List<ReportingParty>(query.OrderBy(q => q.phone));
                               break;
-                          case  "Phone1TypeId":
-                              query = new List<ReportingParty>(query.OrderBy(q => q.Phone1TypeId));
+                          case  "phoneTypeId":
+                              query = new List<ReportingParty>(query.OrderBy(q => q.phoneTypeId));
                               break;
                           case  "Phone2":
                               query = new List<ReportingParty>(query.OrderBy(q => q.Phone2));
@@ -240,13 +240,13 @@ namespace QuickComplaint.Web.UI.Test.Controllers.Api
                  });
 
             _repository
-                 .Setup(it => it.GetDataByPhone1TypeIdRowCount(phone1TypeId))
+                 .Setup(it => it.GetDataByphoneTypeIdRowCount(phoneTypeId))
                  .Returns(_repositoryList.Count);
 
-            var result = _target.GetDataByPhone1TypeIdPageable(Phone1TypeIdValue, "Id", 1, 2);
+            var result = _target.GetDataByphoneTypeIdPageable(phoneTypeIdValue, "Id", 1, 2);
             Assert.IsTrue(result.TryGetContentValue(out expectedResult));
-            Assert.AreEqual(_repositoryList.Where(x => x.Phone1TypeId==phone1TypeId).Take(2).ToList().Count, expectedResult.Results.Count);
-            Assert.AreEqual(_repositoryList.Where(x => x.Phone1TypeId==phone1TypeId).OrderBy(q => q.Id).FirstOrDefault().Id, expectedResult.Results.FirstOrDefault().Id);
+            Assert.AreEqual(_repositoryList.Where(x => x.phoneTypeId==phoneTypeId).Take(2).ToList().Count, expectedResult.Results.Count);
+            Assert.AreEqual(_repositoryList.Where(x => x.phoneTypeId==phoneTypeId).OrderBy(q => q.Id).FirstOrDefault().Id, expectedResult.Results.FirstOrDefault().Id);
         }
 
         [TestMethod()]
@@ -284,11 +284,11 @@ namespace QuickComplaint.Web.UI.Test.Controllers.Api
                           case  "Email":
                               query = new List<ReportingParty>(query.OrderBy(q => q.Email));
                               break;
-                          case  "Phone1":
-                              query = new List<ReportingParty>(query.OrderBy(q => q.Phone1));
+                          case  "phone":
+                              query = new List<ReportingParty>(query.OrderBy(q => q.phone));
                               break;
-                          case  "Phone1TypeId":
-                              query = new List<ReportingParty>(query.OrderBy(q => q.Phone1TypeId));
+                          case  "phoneTypeId":
+                              query = new List<ReportingParty>(query.OrderBy(q => q.phoneTypeId));
                               break;
                           case  "Phone2":
                               query = new List<ReportingParty>(query.OrderBy(q => q.Phone2));

@@ -2,6 +2,7 @@ using System;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace QuickComplaint.Web.UI
 {
@@ -11,6 +12,8 @@ namespace QuickComplaint.Web.UI
         {
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             SerializerSettings.Formatting = Formatting.Indented;
+            SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
         }
 
         public override void SetDefaultContentHeaders(Type type, HttpContentHeaders headers,
@@ -18,6 +21,7 @@ namespace QuickComplaint.Web.UI
         {
             base.SetDefaultContentHeaders(type, headers, mediaType);
             headers.ContentType = new MediaTypeHeaderValue("application/json");
+
         }
     }
 }

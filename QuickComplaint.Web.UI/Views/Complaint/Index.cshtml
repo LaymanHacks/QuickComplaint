@@ -11,13 +11,13 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <div ng-controller="complaintIndexCtrl as vm">
-    <div style="float: right" class="btn-group" dropdown>
+    <div style="float: right" class="btn-group" uib-dropdown>
         <button type="button" class="btn btn-primary">{{vm.pageSize}} Items per page</button>
-        <button type="button" class="btn dropdown-toggle">
+        <button type="button" class="btn dropdown-toggle" uib-dropdown-toggle>
             <span class="caret"></span>
             <span class="sr-only">Split button!</span>
         </button>
-        <ul class="dropdown-menu" role="menu">
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu">
             <li>
                 <a href="#" ng-click="vm.pageSize=10;vm.pageChanged()">10</a>
             </li>
@@ -37,7 +37,7 @@
             </th>
 
             <th>
-                Complaint Type Id
+                Complaint Type
             </th>
 
             <th>
@@ -49,7 +49,7 @@
             </th>
 
             <th>
-                Reporting Party Id
+                Reporting Party
             </th>
 
             <th></th>
@@ -63,7 +63,7 @@
             </td>
 
             <td>
-                {{item.complaintTypeId}}
+                {{item.name}}
             </td>
 
             <td>
@@ -75,22 +75,20 @@
             </td>
 
             <td>
-                {{item.reportingPartyId}}
+                {{item.reportingParty}}
             </td>
 
             <td>
-                <a href="" ng-click="vm.deleteComplaint(item.id)">
-                    <i class="fa fa-trash-o"></i>
-                </a>
-                <a href="/Complaint/Edit/{{item.id}}">Edit</a>
+               <a href="/Complaint/Edit/{{item.id}}">Edit</a>
             </td>
         </tr>
 
 
     </table>
-    <pagination total-items="vm.pageableResults.totalCount" items-per-page="vm.pageSize" ng-model="vm.currentPage" ng-change="vm.pageChanged()" max-size="10" class="pagination-sm" boundary-links="true"></pagination>
+    <ul uib-pagination total-items="vm.pageableResults.totalCount" items-per-page="vm.pageSize" ng-model="vm.currentPage" ng-change="vm.pageChanged()" max-size="10" class="pagination-sm" boundary-links="true"></ul>
 </div>
 @section Scripts {
     <script src="~/app/Complaint/index.js"></script>
-    <script src="~/app/services/ComplaintDataService.js"></script>
+<script src="~/app/services/ComplaintDataService.js"></script>
+    <script src="~/app/services/ComplaintDetailDataService.js"></script>
 }

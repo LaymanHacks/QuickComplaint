@@ -46,8 +46,7 @@ namespace QuickComplaint.Data.Repository
             while (reader.Read())
             {
                 var tempEntity = new ReportingParty(reader.GetInt32("Id"), reader.GetString("Name"),
-                    reader.GetString("Email"), reader.GetString("Phone1"), reader.GetNullableInt32("Phone1TypeId"),
-                    reader.GetString("Phone2"), reader.GetNullableInt32("Phone2TypeId"));
+                    reader.GetString("Email"), reader.GetString("Phone"), reader.GetNullableInt32("PhoneTypeId"));
                 entList.Add(tempEntity);
             }
             reader.Close();
@@ -59,18 +58,15 @@ namespace QuickComplaint.Data.Repository
         /// </summary>
         /// <param name="name"></param>
         /// <param name="email"></param>
-        /// <param name="phone1"></param>
-        /// <param name="phone1TypeId"></param>
-        /// <param name="phone2"></param>
-        /// <param name="phone2TypeId"></param>
+        /// <param name="phone"></param>
+        /// <param name="phoneTypeId"></param>
+        
         /// <param name="id"></param>
         /// <remarks></remarks>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-        public void Update(string name, string email, string phone1, int? phone1TypeId, string phone2, int? phone2TypeId,
-            int id)
+        public void Update(string name, string email, string phone, int? phoneTypeId,int id)
         {
-            var command = _dbReportingPartyCommandProvider.GetUpdateDbCommand(name, email, phone1, phone1TypeId, phone2,
-                phone2TypeId, id);
+            var command = _dbReportingPartyCommandProvider.GetUpdateDbCommand(name, email, phone, phoneTypeId, id);
             command.Connection = _dbConnHolder.Connection;
             _dbConnHolder.Open();
             command.ExecuteNonQuery();
@@ -80,8 +76,7 @@ namespace QuickComplaint.Data.Repository
         [DataObjectMethod(DataObjectMethodType.Update, false)]
         public void Update(ReportingParty reportingParty)
         {
-            Update(reportingParty.Name, reportingParty.Email, reportingParty.Phone1, reportingParty.Phone1TypeId,
-                reportingParty.Phone2, reportingParty.Phone2TypeId, reportingParty.Id);
+            Update(reportingParty.Name, reportingParty.Email, reportingParty.phone, reportingParty.phoneTypeId, reportingParty.Id);
         }
 
         /// <summary>
@@ -110,17 +105,14 @@ namespace QuickComplaint.Data.Repository
         /// </summary>
         /// <param name="name"></param>
         /// <param name="email"></param>
-        /// <param name="phone1"></param>
-        /// <param name="phone1TypeId"></param>
-        /// <param name="phone2"></param>
-        /// <param name="phone2TypeId"></param>
+        /// <param name="phone"></param>
+        /// <param name="phoneTypeId"></param>
         /// <returns></returns>
         /// <remarks></remarks>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-        public int Insert(string name, string email, string phone1, int? phone1TypeId, string phone2, int? phone2TypeId)
+        public int Insert(string name, string email, string phone, int? phoneTypeId)
         {
-            var command = _dbReportingPartyCommandProvider.GetInsertDbCommand(name, email, phone1, phone1TypeId, phone2,
-                phone2TypeId);
+            var command = _dbReportingPartyCommandProvider.GetInsertDbCommand(name, email, phone, phoneTypeId);
             command.Connection = _dbConnHolder.Connection;
             _dbConnHolder.Open();
             var returnValue = Convert.ToInt32(command.ExecuteScalar());
@@ -131,8 +123,7 @@ namespace QuickComplaint.Data.Repository
         [DataObjectMethod(DataObjectMethodType.Insert, false)]
         public int Insert(ReportingParty reportingParty)
         {
-            return Insert(reportingParty.Name, reportingParty.Email, reportingParty.Phone1, reportingParty.Phone1TypeId,
-                reportingParty.Phone2, reportingParty.Phone2TypeId);
+            return Insert(reportingParty.Name, reportingParty.Email, reportingParty.phone, reportingParty.phoneTypeId);
         }
 
         /// <summary>
@@ -154,8 +145,7 @@ namespace QuickComplaint.Data.Repository
             while (reader.Read())
             {
                 var tempEntity = new ReportingParty(reader.GetInt32("Id"), reader.GetString("Name"),
-                    reader.GetString("Email"), reader.GetString("Phone1"), reader.GetNullableInt32("Phone1TypeId"),
-                    reader.GetString("Phone2"), reader.GetNullableInt32("Phone2TypeId"));
+                    reader.GetString("Email"), reader.GetString("phone"), reader.GetNullableInt32("phoneTypeId"));
                 entList.Add(tempEntity);
             }
             reader.Close();
@@ -181,8 +171,7 @@ namespace QuickComplaint.Data.Repository
             while (reader.Read())
             {
                 var tempEntity = new ReportingParty(reader.GetInt32("Id"), reader.GetString("Name"),
-                    reader.GetString("Email"), reader.GetString("Phone1"), reader.GetNullableInt32("Phone1TypeId"),
-                    reader.GetString("Phone2"), reader.GetNullableInt32("Phone2TypeId"));
+                    reader.GetString("Email"), reader.GetString("phone"), reader.GetNullableInt32("phoneTypeId"));
                 entList.Add(tempEntity);
             }
             reader.Close();
@@ -190,15 +179,15 @@ namespace QuickComplaint.Data.Repository
         }
 
         /// <summary>
-        ///     Function GetDataByPhone1TypeId returns a IDataReader for ReportingParty
+        ///     Function GetDataByphoneTypeId returns a IDataReader for ReportingParty
         /// </summary>
-        /// <param name="phone1TypeId"></param>
+        /// <param name="phoneTypeId"></param>
         /// <returns></returns>
         /// <remarks></remarks>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public ICollection<ReportingParty> GetDataByPhone1TypeId(int phone1TypeId)
+        public ICollection<ReportingParty> GetDataByphoneTypeId(int phoneTypeId)
         {
-            var command = _dbReportingPartyCommandProvider.GetGetDataByPhone1TypeIdDbCommand(phone1TypeId);
+            var command = _dbReportingPartyCommandProvider.GetGetDataByphoneTypeIdDbCommand(phoneTypeId);
             command.Connection = _dbConnHolder.Connection;
             _dbConnHolder.Open();
             var entList = new Collection<ReportingParty>();
@@ -206,8 +195,7 @@ namespace QuickComplaint.Data.Repository
             while (reader.Read())
             {
                 var tempEntity = new ReportingParty(reader.GetInt32("Id"), reader.GetString("Name"),
-                    reader.GetString("Email"), reader.GetString("Phone1"), reader.GetNullableInt32("Phone1TypeId"),
-                    reader.GetString("Phone2"), reader.GetNullableInt32("Phone2TypeId"));
+                    reader.GetString("Email"), reader.GetString("phone"), reader.GetNullableInt32("phoneTypeId"));
                 entList.Add(tempEntity);
             }
             reader.Close();
@@ -215,20 +203,20 @@ namespace QuickComplaint.Data.Repository
         }
 
         /// <summary>
-        ///     Function GetDataBy GetDataByPhone1TypeIdPageable returns a IDataReader populated with a subset of data from
+        ///     Function GetDataBy GetDataByphoneTypeIdPageable returns a IDataReader populated with a subset of data from
         ///     ReportingParty
         /// </summary>
-        /// <param name="phone1TypeId"></param>
+        /// <param name="phoneTypeId"></param>
         /// <param name="sortExpression"></param>
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
         /// <remarks></remarks>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public PagedResult<ReportingParty> GetDataByPhone1TypeIdPageable(int phone1TypeId, string sortExpression,
+        public PagedResult<ReportingParty> GetDataByphoneTypeIdPageable(int phoneTypeId, string sortExpression,
             int page, int pageSize)
         {
-            var command = _dbReportingPartyCommandProvider.GetGetDataByPhone1TypeIdPageableDbCommand(phone1TypeId,
+            var command = _dbReportingPartyCommandProvider.GetGetDataByphoneTypeIdPageableDbCommand(phoneTypeId,
                 sortExpression, page, pageSize);
             command.Connection = _dbConnHolder.Connection;
             _dbConnHolder.Open();
@@ -237,84 +225,51 @@ namespace QuickComplaint.Data.Repository
             while (reader.Read())
             {
                 var tempEntity = new ReportingParty(reader.GetInt32("Id"), reader.GetString("Name"),
-                    reader.GetString("Email"), reader.GetString("Phone1"), reader.GetNullableInt32("Phone1TypeId"),
-                    reader.GetString("Phone2"), reader.GetNullableInt32("Phone2TypeId"));
+                    reader.GetString("Email"), reader.GetString("phone"), reader.GetNullableInt32("phoneTypeId"));
                 entList.Add(tempEntity);
             }
             reader.Close();
-            var totalCount = GetDataByPhone1TypeIdRowCount(phone1TypeId);
+            var totalCount = GetDataByphoneTypeIdRowCount(phoneTypeId);
             var pagedResults = new PagedResult<ReportingParty>(page, pageSize, totalCount, entList);
             return pagedResults;
         }
 
         /// <summary>
-        ///     Function GetDataByPhone2TypeId returns a IDataReader for ReportingParty
+        /// 
         /// </summary>
-        /// <param name="phone2TypeId"></param>
+        /// <param name="searchValue"></param>
         /// <returns></returns>
         /// <remarks></remarks>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public ICollection<ReportingParty> GetDataByPhone2TypeId(int phone2TypeId)
+        public ICollection<ReportingParty> Search(string searchValue)
         {
-            var command = _dbReportingPartyCommandProvider.GetGetDataByPhone2TypeIdDbCommand(phone2TypeId);
+            var command = _dbReportingPartyCommandProvider.GetSearchDbCommand(searchValue);
             command.Connection = _dbConnHolder.Connection;
             _dbConnHolder.Open();
             var entList = new Collection<ReportingParty>();
             var reader = new SafeDataReader(command.ExecuteReader(CommandBehavior.CloseConnection));
             while (reader.Read())
             {
-                var tempEntity = new ReportingParty(reader.GetInt32("Id"), reader.GetString("Name"),
-                    reader.GetString("Email"), reader.GetString("Phone1"), reader.GetNullableInt32("Phone1TypeId"),
-                    reader.GetString("Phone2"), reader.GetNullableInt32("Phone2TypeId"));
+                var tempEntity = new ReportingParty(reader.GetInt32("Id"), reader.GetString("Name"), reader.GetString("Email"), reader.GetString("Phone"), reader.GetNullableInt32("PhoneTypeId"));
                 entList.Add(tempEntity);
             }
             reader.Close();
             return entList;
+
         }
 
-        /// <summary>
-        ///     Function GetDataBy GetDataByPhone2TypeIdPageable returns a IDataReader populated with a subset of data from
-        ///     ReportingParty
-        /// </summary>
-        /// <param name="phone2TypeId"></param>
-        /// <param name="sortExpression"></param>
-        /// <param name="page"></param>
-        /// <param name="pageSize"></param>
-        /// <returns></returns>
-        /// <remarks></remarks>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public PagedResult<ReportingParty> GetDataByPhone2TypeIdPageable(int phone2TypeId, string sortExpression,
-            int page, int pageSize)
-        {
-            var command = _dbReportingPartyCommandProvider.GetGetDataByPhone2TypeIdPageableDbCommand(phone2TypeId,
-                sortExpression, page, pageSize);
-            command.Connection = _dbConnHolder.Connection;
-            _dbConnHolder.Open();
-            var entList = new Collection<ReportingParty>();
-            var reader = new SafeDataReader(command.ExecuteReader(CommandBehavior.CloseConnection));
-            while (reader.Read())
-            {
-                var tempEntity = new ReportingParty(reader.GetInt32("Id"), reader.GetString("Name"),
-                    reader.GetString("Email"), reader.GetString("Phone1"), reader.GetNullableInt32("Phone1TypeId"),
-                    reader.GetString("Phone2"), reader.GetNullableInt32("Phone2TypeId"));
-                entList.Add(tempEntity);
-            }
-            reader.Close();
-            var totalCount = GetDataByPhone2TypeIdRowCount(phone2TypeId);
-            var pagedResults = new PagedResult<ReportingParty>(page, pageSize, totalCount, entList);
-            return pagedResults;
-        }
+
 
         /// <summary>
         ///     Function GetRowCount returns the row count for ReportingParty
         /// </summary>
-        /// <param name="phone1TypeId"></param>
+        /// <param name="phoneTypeId"></param>
         /// <returns></returns>
         /// <remarks></remarks>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public int GetDataByPhone1TypeIdRowCount(int phone1TypeId)
+        public int GetDataByphoneTypeIdRowCount(int phoneTypeId)
         {
-            var command = _dbReportingPartyCommandProvider.GetGetDataByPhone1TypeIdRowCountDbCommand(phone1TypeId);
+            var command = _dbReportingPartyCommandProvider.GetGetDataByphoneTypeIdRowCountDbCommand(phoneTypeId);
             command.Connection = _dbConnHolder.Connection;
             _dbConnHolder.Open();
             var returnValue = Convert.ToInt32(command.ExecuteScalar());
@@ -322,22 +277,7 @@ namespace QuickComplaint.Data.Repository
             return returnValue;
         }
 
-        /// <summary>
-        ///     Function GetRowCount returns the row count for ReportingParty
-        /// </summary>
-        /// <param name="phone2TypeId"></param>
-        /// <returns></returns>
-        /// <remarks></remarks>
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public int GetDataByPhone2TypeIdRowCount(int phone2TypeId)
-        {
-            var command = _dbReportingPartyCommandProvider.GetGetDataByPhone2TypeIdRowCountDbCommand(phone2TypeId);
-            command.Connection = _dbConnHolder.Connection;
-            _dbConnHolder.Open();
-            var returnValue = Convert.ToInt32(command.ExecuteScalar());
-            _dbConnHolder.Close();
-            return returnValue;
-        }
+       
 
         /// <summary>
         ///     Function GetRowCount returns the row count for ReportingParty

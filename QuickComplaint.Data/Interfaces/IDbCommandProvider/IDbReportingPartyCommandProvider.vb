@@ -15,18 +15,15 @@ Namespace QuickComplaint.Data.DbCommandProvider
         ReadOnly Property ReportingPartyDbConnectionHolder() As DbConnectionHolder
         ReadOnly Property DbConnectionName As String
         Function GetGetDataDbCommand() As IDbCommand
-        Function GetUpdateDbCommand( ByVal name As String,  ByVal email As String,  ByVal phone1 As String,  ByVal phone1TypeId As  Nullable(Of Int32) ,  ByVal phone2 As String,  ByVal phone2TypeId As  Nullable(Of Int32) ,  ByVal id As Int32) As IDbCommand
+        Function GetUpdateDbCommand( ByVal name As String,  ByVal email As String,  ByVal phone As String,  ByVal phoneTypeId As  Nullable(Of Int32),  ByVal id As Int32) As IDbCommand
         Function GetDeleteDbCommand( ByVal id As Int32) As IDbCommand
-        Function GetInsertDbCommand( ByVal name As String,  ByVal email As String,  ByVal phone1 As String,  ByVal phone1TypeId As  Nullable(Of Int32) ,  ByVal phone2 As String,  ByVal phone2TypeId As  Nullable(Of Int32) ) As IDbCommand
+        Function GetInsertDbCommand( ByVal name As String,  ByVal email As String,  ByVal phone As String,  ByVal phoneTypeId As  Nullable(Of Int32) ) As IDbCommand
         Function GetGetDataPageableDbCommand( ByVal sortExpression As String,  ByVal page As Int32,  ByVal pageSize As Int32) As IDbCommand
         Function GetGetRowCountDbCommand() As IDbCommand
         Function GetGetDataByIdDbCommand( ByVal id As Int32) As IDbCommand
-        Function GetGetDataByPhone1TypeIdDbCommand( ByVal phone1TypeId As Int32) As IDbCommand
-        Function GetGetDataByPhone1TypeIdPageableDbCommand( ByVal phone1TypeId As Int32,  ByVal sortExpression As String,  ByVal page As Int32,  ByVal pageSize As Int32) As IDbCommand
-        Function GetGetDataByPhone1TypeIdRowCountDbCommand( ByVal phone1TypeId As Int32) As IDbCommand
-        Function GetGetDataByPhone2TypeIdDbCommand( ByVal phone2TypeId As Int32) As IDbCommand
-        Function GetGetDataByPhone2TypeIdPageableDbCommand( ByVal phone2TypeId As Int32,  ByVal sortExpression As String,  ByVal page As Int32,  ByVal pageSize As Int32) As IDbCommand
-        Function GetGetDataByPhone2TypeIdRowCountDbCommand( ByVal phone2TypeId As Int32) As IDbCommand
-
+        Function GetGetDataByphoneTypeIdDbCommand( ByVal phoneTypeId As Int32) As IDbCommand
+        Function GetGetDataByphoneTypeIdPageableDbCommand( ByVal phoneTypeId As Int32,  ByVal sortExpression As String,  ByVal page As Int32,  ByVal pageSize As Int32) As IDbCommand
+        Function GetGetDataByphoneTypeIdRowCountDbCommand( ByVal phoneTypeId As Int32) As IDbCommand
+        Function GetSearchDbCommand(searchValue As String) As IDbCommand
     End Interface
 End Namespace

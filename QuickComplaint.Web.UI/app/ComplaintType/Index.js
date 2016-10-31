@@ -19,7 +19,6 @@
         vm.sortExpression = "";
         vm.currentPage = 1;
         vm.pageSize = 10;
-        vm.deleteComplaintType = deleteComplaintType;
 
         activate();
 
@@ -40,8 +39,6 @@
                 });
         }
 
-        function deleteComplaintType(complaintTypeId) {
-            return complaintTypeDataService.deleteComplaintType(complaintTypeId);
-        };
+       
     }
 })();

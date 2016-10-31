@@ -1,72 +1,94 @@
-@model QuickComplaint.Data.Entities.Complaint
+<form name="createComplaint">
+
+   
+    <div ng-controller="complaintCreateCtrl as vm">
+        <div class="form-horizontal">
+
+            <h2>New Complaint</h2>
+            <hr/>
+            <div class="row ">
+                <div class="col-md-8">
+                    <h4>Complaint Details</h4>
+                    <div style="padding: 5px;">
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label for="complaintType">Complaint Type</label>
+                            <select id="complaintType" class="form-control" ng-model="vm.complaint.complaintTypeId" ng-options="type.id as type.name for type in vm.complaintTypes"></select>
+                        </div>
 
-    <div class="form-horizontal">
-        <h4>Complaint</h4>
-        <hr/>
-        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                        <div class="form-group">
+                            <label for="locationDetails">Location</label>
+                            <input type="text" id="locationDetails" required class="form-control" ng-model="vm.complaint.locationDetails" uib-typeahead="address for address in vm.getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults"/>
+                            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                            <div ng-show="noResults">
+                                <i class="glyphicon glyphicon-remove"></i> No Results Found
+                            </div>
+                        </div>
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id, new {htmlAttributes = new {@class = "form-control k-textbox"}})
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea rows="5" id="description" class="form-control" ng-model="vm.complaint.description"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" style="background: -moz-linear-gradient(top, rgba(135, 135, 135, 1) 0%, rgba(206, 206, 206, 0.72) 100%); /* FF3.6-15 */
+                                                                                             background: -webkit-linear-gradient(top, rgba(135, 135, 135, 1) 0%, rgba(206, 206, 206, 0.72) 100%); /* Chrome10-25,Safari5.1-6 */
+                                                                                             background: linear-gradient(to bottom, rgba(135, 135, 135, 1) 0%, rgba(206, 206, 206, 0.72) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                                                                                             border-radius: 10px;
+                                                                                             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#878787', endColorstr='#b8cecece', GradientType=0);">
+                    <h4>Reporting Party</h4>
+                    <div style="padding: 5px;">
 
-                @Html.ValidationMessageFor(model => model.Id, "", new {@class = "text-danger"})
+
+                        <div class="form-group">
+                            <label for="partyName">Name</label>
+                            <input type="text" ng-required="true" required id="partyName" class="form-control" ng-model="vm.complaint.reportingParty.name" typeahead-on-select="vm.reportingPartySelected($item, $model, $label)" autocomplete="off" uib-typeahead="reportingParty.name for reportingParty in vm.getReportingParties($viewValue)" typeahead-loading="loadingReportingParty">
+                            <i ng-show="loadingReportingParty" class="glyphicon glyphicon-refresh"></i>
+                            <span class="help-block"
+                                  ng-show="createComplaint.partyName.$valid" >
+                                Reporting party name is required
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" id="email" class="form-control" ng-model="vm.complaint.reportingParty.email"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" name="phone" id="phone" class="form-control" ng-model="vm.complaint.reportingParty.phone"   ng-maxlength="10" />
+                      
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneType">Phone Type</label>
+                            <select id="phoneType" class="form-control" ng-model="vm.complaint.reportingParty.phoneTypeId" ng-options="type.id as type.name for type in vm.phoneTypes"></select>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12 ">
+                    <input type="button" ng-disabled="createComplaint.$invalid" ng-click="vm.createComplaint()" value="Create" class="btn btn-primary"/>
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ComplaintTypeId, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.ComplaintTypeId, (SelectList) ViewBag.ComplaintTypes, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.ComplaintTypeId, "", new {@class = "text-danger"})
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new {htmlAttributes = new {@class = "form-control k-textbox"}})
-
-                @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LocationDetails, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LocationDetails, new {htmlAttributes = new {@class = "form-control k-textbox"}})
-
-                @Html.ValidationMessageFor(model => model.LocationDetails, "", new {@class = "text-danger"})
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReportingPartyId, new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.ReportingPartyId, (SelectList) ViewBag.ReportingParties, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.ReportingPartyId, "", new {@class = "text-danger"})
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default"/>
-            </div>
-        </div>
     </div>
-}
+</form>
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
-
+    <script src="~/app/Complaint/create.js"></script>
+    <script src="~/app/services/ComplaintTypeDataService.js"></script>
+    <script src="~/app/services/ComplaintDataService.js"></script>
+    <script src="~/app/services/ReportingPartyDataService.js"></script>
+    <script src="~/app/services/locationDataService.js"></script>
 }

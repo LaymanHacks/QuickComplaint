@@ -11,13 +11,13 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <div ng-controller="reportingPartyIndexCtrl as vm">
-    <div style="float: right" class="btn-group" dropdown>
+    <div style="float: right" class="btn-group" uib-dropdown>
         <button type="button" class="btn btn-primary">{{vm.pageSize}} Items per page</button>
-        <button type="button" class="btn dropdown-toggle">
+        <button type="button" class="btn uib-dropdown-toggle">
             <span class="caret"></span>
             <span class="sr-only">Split button!</span>
         </button>
-        <ul class="dropdown-menu" role="menu">
+        <ul class="dropdown-menu" uib-dropdown-menu  role="menu">
             <li>
                 <a href="#" ng-click="vm.pageSize=10;vm.pageChanged()">10</a>
             </li>
@@ -45,20 +45,12 @@
             </th>
 
             <th>
-                Phone1
+                phone
             </th>
 
-            <th>
-                Phone1 Type Id
-            </th>
+           
 
-            <th>
-                Phone2
-            </th>
-
-            <th>
-                Phone2 Type Id
-            </th>
+           
 
             <th></th>
         </tr>
@@ -79,32 +71,21 @@
             </td>
 
             <td>
-                {{item.phone1}}
+                {{item.phone}}
             </td>
 
-            <td>
-                {{item.phone1TypeId}}
-            </td>
+         
+            
 
             <td>
-                {{item.phone2}}
-            </td>
-
-            <td>
-                {{item.phone2TypeId}}
-            </td>
-
-            <td>
-                <a href="" ng-click="vm.deleteReportingParty(item.id)">
-                    <i class="fa fa-trash-o"></i>
-                </a>
+               
                 <a href="/ReportingParty/Edit/{{item.id}}">Edit</a>
             </td>
         </tr>
 
 
     </table>
-    <pagination total-items="vm.pageableResults.totalCount" items-per-page="vm.pageSize" ng-model="vm.currentPage" ng-change="vm.pageChanged()" max-size="10" class="pagination-sm" boundary-links="true"></pagination>
+    <ul uib-pagination total-items="vm.pageableResults.totalCount" items-per-page="vm.pageSize" ng-model="vm.currentPage" ng-change="vm.pageChanged()" max-size="10" class="pagination-sm" boundary-links="true"></ul>
 </div>
 @section Scripts {
     <script src="~/app/ReportingParty/index.js"></script>

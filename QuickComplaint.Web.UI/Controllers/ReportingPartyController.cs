@@ -65,11 +65,9 @@ namespace QuickComplaint.Web.UI.Controllers
         {
             var reportingParty = _dbReportingPartyRepository.GetDataById(id).FirstOrDefault();
             if (reportingParty != null)
-                ViewBag.PhoneTypes = new SelectList(_dbPhoneTypeRepository.GetData(), "Id", "Id",
-                    reportingParty.Phone1TypeId);
-            if (reportingParty != null)
-                ViewBag.PhoneTypes = new SelectList(_dbPhoneTypeRepository.GetData(), "Id", "Id",
-                    reportingParty.Phone2TypeId);
+                ViewBag.PhoneTypes = new SelectList(_dbPhoneTypeRepository.GetData(), "Id", "Name",
+                    reportingParty.phoneTypeId);
+            
 
             return View(reportingParty);
         }

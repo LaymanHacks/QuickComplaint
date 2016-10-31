@@ -2376,7 +2376,7 @@ angular.module('ngMockE2E', ['ng']).config(['$provide', function($provide) {
  * ```js
  *   var myAppDev = angular.module('myAppDev', ['myApp', 'ngMockE2E']);
  *   myAppDev.run(function($httpBackend) {
- *     var phones = [{name: 'phone1'}, {name: 'phone2'}];
+ *     var phones = [{name: 'phone'}, {name: 'phone2'}];
  *
  *     // returns the current list of phones
  *     $httpBackend.whenGET('/phones').respond(phones);
@@ -2427,7 +2427,7 @@ angular.module('ngMockE2E', ['ng']).config(['$provide', function($provide) {
  *   var myAppDev = angular.module('myAppE2E', ['myApp', 'ngMockE2E']);
  *
  *   myAppDev.run(function($httpBackend) {
- *     var phones = [{name: 'phone1'}, {name: 'phone2'}];
+ *     var phones = [{name: 'phone'}, {name: 'phone2'}];
  *
  *     // returns the current list of phones
  *     $httpBackend.whenGET('/phones').respond(phones);

@@ -21,10 +21,12 @@ namespace QuickComplaint.Web.UI.Controllers.Api
     public class ComplaintApiController : ApiController
     {
         private readonly IComplaintRepository _dbRepository;
+        private readonly IReportingPartyRepository _dbReportingPartyRepository;
 
-        public ComplaintApiController(IComplaintRepository dbRepository)
+        public ComplaintApiController(IComplaintRepository dbRepository, IReportingPartyRepository dbReportingPartyRepository)
         {
             _dbRepository = dbRepository;
+            _dbReportingPartyRepository = dbReportingPartyRepository;
         }
 
         [Route("api/complaints", Name = "ComplaintsDeleteRoute")]
@@ -110,6 +112,14 @@ namespace QuickComplaint.Web.UI.Controllers.Api
         [HttpPost]
         public int Insert(Complaint complaint)
         {
+            if (complaint.ReportingParty.Id < 0)
+            {
+                complaint.ReportingPartyId = _dbReportingPartyRepository.Insert(complaint.ReportingParty);
+            }
+            else
+            {
+                _dbReportingPartyRepository.Update(complaint.ReportingParty);
+            }
             return _dbRepository.Insert(complaint.ComplaintTypeId, complaint.Description, complaint.LocationDetails,
                 complaint.ReportingPartyId);
         }

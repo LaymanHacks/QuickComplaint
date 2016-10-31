@@ -50,6 +50,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbComplaintDetailRepository.cs" />
     <Compile Include="DbComplaintRepository.cs" />
     <Compile Include="DbComplaintTypeRepository.cs" />
     <Compile Include="DbPhoneTypeRepository.cs" />

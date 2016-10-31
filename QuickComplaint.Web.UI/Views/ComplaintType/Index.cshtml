@@ -11,13 +11,13 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <div ng-controller="complaintTypeIndexCtrl as vm">
-    <div style="float: right" class="btn-group" dropdown>
+    <div style="float: right" class="btn-group" uib-dropdown>
         <button type="button" class="btn btn-primary">{{vm.pageSize}} Items per page</button>
-        <button type="button" class="btn dropdown-toggle">
+        <button type="button" class="btn uib-dropdown-toggle">
             <span class="caret"></span>
             <span class="sr-only">Split button!</span>
         </button>
-        <ul class="dropdown-menu" role="menu">
+        <ul class="dropdown-menu" uib-dropdown-menu  role="menu">
             <li>
                 <a href="#" ng-click="vm.pageSize=10;vm.pageChanged()">10</a>
             </li>
@@ -55,16 +55,14 @@
             </td>
 
             <td>
-                <a href="" ng-click="vm.deleteComplaintType(item.id)">
-                    <i class="fa fa-trash-o"></i>
-                </a>
+              
                 <a href="/ComplaintType/Edit/{{item.id}}">Edit</a>
             </td>
         </tr>
 
 
     </table>
-    <pagination total-items="vm.pageableResults.totalCount" items-per-page="vm.pageSize" ng-model="vm.currentPage" ng-change="vm.pageChanged()" max-size="10" class="pagination-sm" boundary-links="true"></pagination>
+    <ul uib-pagination total-items="vm.pageableResults.totalCount" items-per-page="vm.pageSize" ng-model="vm.currentPage" ng-change="vm.pageChanged()" max-size="10" class="pagination-sm" boundary-links="true"></ul>
 </div>
 @section Scripts {
     <script src="~/app/ComplaintType/index.js"></script>

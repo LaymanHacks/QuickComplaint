@@ -964,7 +964,7 @@ EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_Sel
   AS
    SET NOCOUNT ON;
 SELECT 
-     [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId]
+     [Id], [Name], [Email], [Phone], [PhoneTypeId]
 FROM [ReportingParty]'
     END
   ELSE
@@ -974,7 +974,7 @@ FROM [ReportingParty]'
   AS
    SET NOCOUNT ON;
    SELECT 
-     [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId]
+     [Id], [Name], [Email], [Phone], [PhoneTypeId]
 FROM [ReportingParty]'
   END
 GO
@@ -989,10 +989,8 @@ EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_Upd
 (
 @Name NVarChar(100), 
 @Email NVarChar(256), 
-@Phone1 NVarChar(100), 
-@Phone1TypeId Int, 
-@Phone2 NVarChar(100), 
-@Phone2TypeId Int, 
+@Phone NVarChar(100), 
+@PhoneTypeId Int, 
 @Id Int
   )
 
@@ -1000,10 +998,8 @@ EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_Upd
    SET NOCOUNT ON;
 UPDATE [ReportingParty] SET [Name]=@Name
      , [Email]=@Email
-     , [Phone1]=@Phone1
-     , [Phone1TypeId]=@Phone1TypeId
-     , [Phone2]=@Phone2
-     , [Phone2TypeId]=@Phone2TypeId
+     , [Phone]=@Phone
+     , [PhoneTypeId]=@PhoneTypeId
 WHERE [Id]=@Id'
     END
   ELSE
@@ -1012,10 +1008,8 @@ WHERE [Id]=@Id'
 (
 @Name NVarChar(100), 
 @Email NVarChar(256), 
-@Phone1 NVarChar(100), 
-@Phone1TypeId Int, 
-@Phone2 NVarChar(100), 
-@Phone2TypeId Int, 
+@Phone NVarChar(100), 
+@PhoneTypeId Int, 
 @Id Int
   )
 
@@ -1023,10 +1017,8 @@ WHERE [Id]=@Id'
    SET NOCOUNT ON;
    UPDATE [ReportingParty] SET [Name]=@Name
      , [Email]=@Email
-     , [Phone1]=@Phone1
-     , [Phone1TypeId]=@Phone1TypeId
-     , [Phone2]=@Phone2
-     , [Phone2TypeId]=@Phone2TypeId
+     , [Phone]=@Phone
+     , [PhoneTypeId]=@PhoneTypeId
 WHERE [Id]=@Id'
   END
 GO
@@ -1073,15 +1065,13 @@ EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_Ins
 (
 @Name NVarChar(100), 
 @Email NVarChar(256), 
-@Phone1 NVarChar(100), 
-@Phone1TypeId Int, 
-@Phone2 NVarChar(100), 
-@Phone2TypeId Int
+@Phone NVarChar(100), 
+@PhoneTypeId Int
   )
 
   AS
    SET NOCOUNT ON;
-INSERT INTO [ReportingParty] ([Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId]) VALUES (@Name, @Email, @Phone1, @Phone1TypeId, @Phone2, @Phone2TypeId);SELECT SCOPE_IDENTITY();'
+INSERT INTO [ReportingParty] ([Name], [Email], [Phone], [PhoneTypeId]) VALUES (@Name, @Email, @Phone, @PhoneTypeId);SELECT SCOPE_IDENTITY();'
     END
   ELSE
   BEGIN
@@ -1089,15 +1079,13 @@ INSERT INTO [ReportingParty] ([Name], [Email], [Phone1], [Phone1TypeId], [Phone2
 (
 @Name NVarChar(100), 
 @Email NVarChar(256), 
-@Phone1 NVarChar(100), 
-@Phone1TypeId Int, 
-@Phone2 NVarChar(100), 
-@Phone2TypeId Int
+@Phone NVarChar(100), 
+@PhoneTypeId Int
   )
 
   AS
    SET NOCOUNT ON;
-   INSERT INTO [ReportingParty] ([Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId]) VALUES (@Name, @Email, @Phone1, @Phone1TypeId, @Phone2, @Phone2TypeId);SELECT SCOPE_IDENTITY();'
+   INSERT INTO [ReportingParty] ([Name], [Email], [Phone], [PhoneTypeId]) VALUES (@Name, @Email, @Phone, @PhoneTypeId);SELECT SCOPE_IDENTITY();'
   END
 GO
 
@@ -1123,8 +1111,8 @@ IF @page < 1 SET @page = 1
  SET  @sortExpression = coalesce(nullif(@sortExpression,''''), ''Id'')     
 SET @startRowIndex = (@page -1) * @pageSize + 1 
 
-SET @sql = ''SELECT [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId] FROM (
-    SELECT [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId],
+SET @sql = ''SELECT [Id], [Name], [Email], [Phone], [PhoneTypeId] FROM (
+    SELECT [Id], [Name], [Email], [Phone], [PhoneTypeId],
          ROW_NUMBER() OVER (ORDER BY '' + @SortExpression + '' ) AS ResultSetRowNumber 
       FROM ReportingParty) AS PagedResults 
  WHERE ResultSetRowNumber BETWEEN @inStartRowIndex AND (@inStartRowIndex  +  @inPageSize) - 1'' 
@@ -1149,8 +1137,8 @@ IF @page < 1 SET @page = 1
  SET  @sortExpression = coalesce(nullif(@sortExpression,''''), ''Id'')     
 SET @startRowIndex = (@page -1) * @pageSize + 1 
 
-SET @sql = ''SELECT [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId] FROM (
-    SELECT [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId],
+SET @sql = ''SELECT [Id], [Name], [Email], [Phone], [PhoneTypeId] FROM (
+    SELECT [Id], [Name], [Email], [Phone], [PhoneTypeId],
          ROW_NUMBER() OVER (ORDER BY '' + @SortExpression + '' ) AS ResultSetRowNumber 
       FROM ReportingParty) AS PagedResults 
  WHERE ResultSetRowNumber BETWEEN @inStartRowIndex AND (@inStartRowIndex  +  @inPageSize) - 1'' 
@@ -1195,7 +1183,7 @@ EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_Get
   AS
    SET NOCOUNT ON;
 SELECT 
-     [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId]
+     [Id], [Name], [Email], [Phone], [PhoneTypeId]
 FROM [ReportingParty]
 WHERE [Id]=@Id'
     END
@@ -1209,7 +1197,7 @@ WHERE [Id]=@Id'
   AS
    SET NOCOUNT ON;
    SELECT 
-     [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId]
+     [Id], [Name], [Email], [Phone], [PhoneTypeId]
 FROM [ReportingParty]
 WHERE [Id]=@Id'
   END
@@ -1219,33 +1207,33 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ReportingParty_GetDataByPhone1TypeId]') AND type in (N'P', N'PC'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ReportingParty_GetDataByPhoneTypeId]') AND type in (N'P', N'PC'))
 BEGIN
-EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_GetDataByPhone1TypeId]
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_GetDataByPhoneTypeId]
 (
-@Phone1TypeId Int
+@PhoneTypeId Int
   )
 
   AS
    SET NOCOUNT ON;
 SELECT 
-     [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId]
+     [Id], [Name], [Email], [Phone], [PhoneTypeId]
 FROM [ReportingParty]
-WHERE [Phone1TypeId]=@Phone1TypeId'
+WHERE [PhoneTypeId]=@PhoneTypeId'
     END
   ELSE
   BEGIN
-  EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_GetDataByPhone1TypeId]
+  EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_GetDataByPhoneTypeId]
 (
-@Phone1TypeId Int
+@PhoneTypeId Int
   )
 
   AS
    SET NOCOUNT ON;
    SELECT 
-     [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId]
+     [Id], [Name], [Email], [Phone], [PhoneTypeId]
 FROM [ReportingParty]
-WHERE [Phone1TypeId]=@Phone1TypeId'
+WHERE [PhoneTypeId]=@PhoneTypeId'
   END
 GO
 
@@ -1253,11 +1241,11 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ReportingParty_GetDataByPhone1TypeIdPageable]') AND type in (N'P', N'PC'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ReportingParty_GetDataByPhoneTypeIdPageable]') AND type in (N'P', N'PC'))
 BEGIN
-EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_GetDataByPhone1TypeIdPageable]
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_GetDataByPhoneTypeIdPageable]
 (
-@Phone1TypeId Int, 
+@PhoneTypeId Int, 
 @sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
@@ -1269,20 +1257,20 @@ DECLARE @sql nvarchar(4000),
  @startRowIndex int 
 IF @page < 1 SET @page = 1 
 IF @pageSize < 1 SET @pageSize = 10 
-SET  @sortExpression = coalesce(nullif(@sortExpression,''''), ''Phone1TypeId'') 
+SET  @sortExpression = coalesce(nullif(@sortExpression,''''), ''PhoneTypeId'') 
 SET @startRowIndex = (@page -1) * @pageSize + 1 
-SET @sql = ''SELECT [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId] FROM (
-		   SELECT [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId],  ROW_NUMBER() OVER (ORDER BY '' + @SortExpression + '' ) AS ResultSetRowNumber
-		   FROM ReportingParty WHERE Phone1TypeId = @INPhone1TypeId) AS PagedResults 
+SET @sql = ''SELECT [Id], [Name], [Email], [Phone], [PhoneTypeId] FROM (
+		   SELECT [Id], [Name], [Email], [Phone], [PhoneTypeId],  ROW_NUMBER() OVER (ORDER BY '' + @SortExpression + '' ) AS ResultSetRowNumber
+		   FROM ReportingParty WHERE PhoneTypeId = @INPhoneTypeId) AS PagedResults 
  		WHERE ResultSetRowNumber BETWEEN @inStartRowIndex AND ( @inStartRowIndex + @inPageSize) - 1'' 
 -- Execute the SQL query 
-EXEC sp_executesql @sql, N''@INPhone1TypeId Int,@inStartRowIndex Int,@inPageSize Int'', @INPhone1TypeId = @Phone1TypeId,@inStartRowIndex =@startRowIndex, @inPageSize = @PageSize;'
+EXEC sp_executesql @sql, N''@INPhoneTypeId Int,@inStartRowIndex Int,@inPageSize Int'', @INPhoneTypeId = @PhoneTypeId,@inStartRowIndex =@startRowIndex, @inPageSize = @PageSize;'
     END
   ELSE
   BEGIN
-  EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_GetDataByPhone1TypeIdPageable]
+  EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_GetDataByPhoneTypeIdPageable]
 (
-@Phone1TypeId Int, 
+@PhoneTypeId Int, 
 @sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
@@ -1294,14 +1282,14 @@ EXEC sp_executesql @sql, N''@INPhone1TypeId Int,@inStartRowIndex Int,@inPageSize
  @startRowIndex int 
 IF @page < 1 SET @page = 1 
 IF @pageSize < 1 SET @pageSize = 10 
-SET  @sortExpression = coalesce(nullif(@sortExpression,''''), ''Phone1TypeId'') 
+SET  @sortExpression = coalesce(nullif(@sortExpression,''''), ''PhoneTypeId'') 
 SET @startRowIndex = (@page -1) * @pageSize + 1 
-SET @sql = ''SELECT [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId] FROM (
-		   SELECT [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId],  ROW_NUMBER() OVER (ORDER BY '' + @SortExpression + '' ) AS ResultSetRowNumber
-		   FROM ReportingParty WHERE Phone1TypeId = @INPhone1TypeId) AS PagedResults 
+SET @sql = ''SELECT [Id], [Name], [Email], [Phone], [PhoneTypeId] FROM (
+		   SELECT [Id], [Name], [Email], [Phone], [PhoneTypeId],  ROW_NUMBER() OVER (ORDER BY '' + @SortExpression + '' ) AS ResultSetRowNumber
+		   FROM ReportingParty WHERE PhoneTypeId = @INPhoneTypeId) AS PagedResults 
  		WHERE ResultSetRowNumber BETWEEN @inStartRowIndex AND ( @inStartRowIndex + @inPageSize) - 1'' 
 -- Execute the SQL query 
-EXEC sp_executesql @sql, N''@INPhone1TypeId Int,@inStartRowIndex Int,@inPageSize Int'', @INPhone1TypeId = @Phone1TypeId,@inStartRowIndex =@startRowIndex, @inPageSize = @PageSize;'
+EXEC sp_executesql @sql, N''@INPhoneTypeId Int,@inStartRowIndex Int,@inPageSize Int'', @INPhoneTypeId = @PhoneTypeId,@inStartRowIndex =@startRowIndex, @inPageSize = @PageSize;'
   END
 GO
 
@@ -1309,29 +1297,29 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ReportingParty_GetDataByPhone1TypeIdRowCount]') AND type in (N'P', N'PC'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ReportingParty_GetDataByPhoneTypeIdRowCount]') AND type in (N'P', N'PC'))
 BEGIN
-EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_GetDataByPhone1TypeIdRowCount]
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_GetDataByPhoneTypeIdRowCount]
 (
-@Phone1TypeId Int
+@PhoneTypeId Int
   )
 
   AS
    SET NOCOUNT ON;
 SELECT COUNT(1) FROM ReportingParty
-WHERE [Phone1TypeId]=@Phone1TypeId'
+WHERE [PhoneTypeId]=@PhoneTypeId'
     END
   ELSE
   BEGIN
-  EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_GetDataByPhone1TypeIdRowCount]
+  EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_GetDataByPhoneTypeIdRowCount]
 (
-@Phone1TypeId Int
+@PhoneTypeId Int
   )
 
   AS
    SET NOCOUNT ON;
    SELECT COUNT(1) FROM ReportingParty
-WHERE [Phone1TypeId]=@Phone1TypeId'
+WHERE [PhoneTypeId]=@PhoneTypeId'
   END
 GO
 
@@ -1339,33 +1327,59 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ReportingParty_GetDataByPhone2TypeId]') AND type in (N'P', N'PC'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ReportingParty_Search]') AND type in (N'P', N'PC'))
 BEGIN
-EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_GetDataByPhone2TypeId]
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_Search]
 (
-@Phone2TypeId Int
+@SearchValue VarChar(50)
   )
+
+  AS
+   SET NOCOUNT ON;
+SELECT @SearchValue = ''%''+ RTRIM(@SearchValue) + ''%'';
+   SELECT 
+     [Id], [Name], [Email], [Phone], [PhoneTypeId]
+FROM [ReportingParty] where ([Name]+'' ''+ COALESCE([Email], '' '')+'' ''+ COALESCE([Phone], '' '')) like @SearchValue'
+    END
+  ELSE
+  BEGIN
+  EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_Search]
+(
+@SearchValue VarChar(50)
+  )
+
+  AS
+   SET NOCOUNT ON;
+   SELECT @SearchValue = ''%''+ RTRIM(@SearchValue) + ''%'';
+   SELECT 
+     [Id], [Name], [Email], [Phone], [PhoneTypeId]
+FROM [ReportingParty] where ([Name]+'' ''+ COALESCE([Email], '' '')+'' ''+ COALESCE([Phone], '' '')) like @SearchValue'
+  END
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ComplaintDetail_Select]') AND type in (N'P', N'PC'))
+BEGIN
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ComplaintDetail_Select]
 
   AS
    SET NOCOUNT ON;
 SELECT 
-     [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId]
-FROM [ReportingParty]
-WHERE [Phone2TypeId]=@Phone2TypeId'
+     [Id], [Name], [Description], [LocationDetails], [ReportingParty]
+FROM [ComplaintDetails]'
     END
   ELSE
   BEGIN
-  EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_GetDataByPhone2TypeId]
-(
-@Phone2TypeId Int
-  )
+  EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ComplaintDetail_Select]
 
   AS
    SET NOCOUNT ON;
    SELECT 
-     [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId]
-FROM [ReportingParty]
-WHERE [Phone2TypeId]=@Phone2TypeId'
+     [Id], [Name], [Description], [LocationDetails], [ReportingParty]
+FROM [ComplaintDetails]'
   END
 GO
 
@@ -1373,11 +1387,10 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ReportingParty_GetDataByPhone2TypeIdPageable]') AND type in (N'P', N'PC'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ComplaintDetail_GetDataPageable]') AND type in (N'P', N'PC'))
 BEGIN
-EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_GetDataByPhone2TypeIdPageable]
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ComplaintDetail_GetDataPageable]
 (
-@Phone2TypeId Int, 
 @sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
@@ -1385,24 +1398,25 @@ EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_Get
 
   AS
    SET NOCOUNT ON;
-DECLARE @sql nvarchar(4000), 
+DECLARE @sql nvarchar(4000),  
  @startRowIndex int 
-IF @page < 1 SET @page = 1 
-IF @pageSize < 1 SET @pageSize = 10 
-SET  @sortExpression = coalesce(nullif(@sortExpression,''''), ''Phone2TypeId'') 
+IF @page < 1 SET @page = 1  
+ IF @pageSize < 1 SET @pageSize = 10  
+ SET  @sortExpression = coalesce(nullif(@sortExpression,''''), ''Id'')     
 SET @startRowIndex = (@page -1) * @pageSize + 1 
-SET @sql = ''SELECT [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId] FROM (
-		   SELECT [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId],  ROW_NUMBER() OVER (ORDER BY '' + @SortExpression + '' ) AS ResultSetRowNumber
-		   FROM ReportingParty WHERE Phone2TypeId = @INPhone2TypeId) AS PagedResults 
- 		WHERE ResultSetRowNumber BETWEEN @inStartRowIndex AND ( @inStartRowIndex + @inPageSize) - 1'' 
--- Execute the SQL query 
-EXEC sp_executesql @sql, N''@INPhone2TypeId Int,@inStartRowIndex Int,@inPageSize Int'', @INPhone2TypeId = @Phone2TypeId,@inStartRowIndex =@startRowIndex, @inPageSize = @PageSize;'
+
+SET @sql = ''SELECT [Id], [Name], [Description], [LocationDetails], [ReportingParty] FROM (
+    SELECT [Id], [Name], [Description], [LocationDetails], [ReportingParty],
+         ROW_NUMBER() OVER (ORDER BY '' + @SortExpression + '' ) AS ResultSetRowNumber 
+      FROM ComplaintDetails) AS PagedResults 
+ WHERE ResultSetRowNumber BETWEEN @inStartRowIndex AND (@inStartRowIndex  +  @inPageSize) - 1'' 
+ -- Execute the SQL query 
+  EXEC sp_executesql @sql, N''@inStartRowIndex Int,@inPageSize Int'', @inStartRowIndex =@startRowIndex, @inPageSize = @PageSize;'
     END
   ELSE
   BEGIN
-  EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_GetDataByPhone2TypeIdPageable]
+  EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ComplaintDetail_GetDataPageable]
 (
-@Phone2TypeId Int, 
 @sortExpression VarChar(125), 
 @page Int, 
 @pageSize Int
@@ -1410,18 +1424,20 @@ EXEC sp_executesql @sql, N''@INPhone2TypeId Int,@inStartRowIndex Int,@inPageSize
 
   AS
    SET NOCOUNT ON;
-   DECLARE @sql nvarchar(4000), 
+   DECLARE @sql nvarchar(4000),  
  @startRowIndex int 
-IF @page < 1 SET @page = 1 
-IF @pageSize < 1 SET @pageSize = 10 
-SET  @sortExpression = coalesce(nullif(@sortExpression,''''), ''Phone2TypeId'') 
+IF @page < 1 SET @page = 1  
+ IF @pageSize < 1 SET @pageSize = 10  
+ SET  @sortExpression = coalesce(nullif(@sortExpression,''''), ''Id'')     
 SET @startRowIndex = (@page -1) * @pageSize + 1 
-SET @sql = ''SELECT [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId] FROM (
-		   SELECT [Id], [Name], [Email], [Phone1], [Phone1TypeId], [Phone2], [Phone2TypeId],  ROW_NUMBER() OVER (ORDER BY '' + @SortExpression + '' ) AS ResultSetRowNumber
-		   FROM ReportingParty WHERE Phone2TypeId = @INPhone2TypeId) AS PagedResults 
- 		WHERE ResultSetRowNumber BETWEEN @inStartRowIndex AND ( @inStartRowIndex + @inPageSize) - 1'' 
--- Execute the SQL query 
-EXEC sp_executesql @sql, N''@INPhone2TypeId Int,@inStartRowIndex Int,@inPageSize Int'', @INPhone2TypeId = @Phone2TypeId,@inStartRowIndex =@startRowIndex, @inPageSize = @PageSize;'
+
+SET @sql = ''SELECT [Id], [Name], [Description], [LocationDetails], [ReportingParty] FROM (
+    SELECT [Id], [Name], [Description], [LocationDetails], [ReportingParty],
+         ROW_NUMBER() OVER (ORDER BY '' + @SortExpression + '' ) AS ResultSetRowNumber 
+      FROM ComplaintDetails) AS PagedResults 
+ WHERE ResultSetRowNumber BETWEEN @inStartRowIndex AND (@inStartRowIndex  +  @inPageSize) - 1'' 
+ -- Execute the SQL query 
+  EXEC sp_executesql @sql, N''@inStartRowIndex Int,@inPageSize Int'', @inStartRowIndex =@startRowIndex, @inPageSize = @PageSize;'
   END
 GO
 
@@ -1429,28 +1445,20 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ReportingParty_GetDataByPhone2TypeIdRowCount]') AND type in (N'P', N'PC'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ComplaintDetail_GetRowCount]') AND type in (N'P', N'PC'))
 BEGIN
-EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ReportingParty_GetDataByPhone2TypeIdRowCount]
-(
-@Phone2TypeId Int
-  )
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[ComplaintDetail_GetRowCount]
 
   AS
    SET NOCOUNT ON;
-SELECT COUNT(1) FROM ReportingParty
-WHERE [Phone2TypeId]=@Phone2TypeId'
+SELECT COUNT(1) FROM ComplaintDetails'
     END
   ELSE
   BEGIN
-  EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ReportingParty_GetDataByPhone2TypeIdRowCount]
-(
-@Phone2TypeId Int
-  )
+  EXEC dbo.sp_executesql @statement = N'ALTER PROCEDURE [dbo].[ComplaintDetail_GetRowCount]
 
   AS
    SET NOCOUNT ON;
-   SELECT COUNT(1) FROM ReportingParty
-WHERE [Phone2TypeId]=@Phone2TypeId'
+   SELECT COUNT(1) FROM ComplaintDetails'
   END
 GO

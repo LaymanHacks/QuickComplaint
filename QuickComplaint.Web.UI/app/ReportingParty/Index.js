@@ -19,7 +19,6 @@
         vm.sortExpression = "";
         vm.currentPage = 1;
         vm.pageSize = 10;
-        vm.deleteReportingParty = deleteReportingParty;
 
         activate();
 
@@ -40,8 +39,5 @@
                 });
         }
 
-        function deleteReportingParty(reportingPartyId) {
-            return reportingPartyDataService.deleteReportingParty(reportingPartyId);
-        };
     }
 })();

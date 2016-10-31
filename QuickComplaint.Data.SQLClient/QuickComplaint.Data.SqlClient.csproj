@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SqlDbComplaintCommandProvider.cs" />
+    <Compile Include="SqlDbComplaintDetailCommandProvider.cs" />
     <Compile Include="SqlDbComplaintTypeCommandProvider.cs" />
     <Compile Include="SqlDbPhoneTypeCommandProvider.cs" />
     <Compile Include="SqlDbReportingPartyCommandProvider.cs" />

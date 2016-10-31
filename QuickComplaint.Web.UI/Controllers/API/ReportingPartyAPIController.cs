@@ -27,6 +27,13 @@ namespace QuickComplaint.Web.UI.Controllers.Api
             _dbRepository = dbRepository;
         }
 
+        [Route("api/reportingParties/search", Name = "ReportingPartiesSearchRoute")]
+        [HttpGet]
+        public IQueryable<ReportingParty> Search([FromUri]String searchValue)
+        {
+            return _dbRepository.Search(searchValue).AsQueryable();
+        }
+
         [Route("api/reportingParties", Name = "ReportingPartiesDeleteRoute")]
         [HttpDelete]
         public HttpResponseMessage Delete(int id)
@@ -56,45 +63,27 @@ namespace QuickComplaint.Web.UI.Controllers.Api
             return _dbRepository.GetDataById(id).AsQueryable();
         }
 
-        [Route("api/phoneTypes/{phone1TypeId}/reportingParties/all", Name = "ReportingPartiesGetDataByPhone1TypeIdRoute"
+        [Route("api/phoneTypes/{phoneTypeId}/reportingParties/all", Name = "ReportingPartiesGetDataByphoneTypeIdRoute"
             )]
         [HttpGet]
-        public IQueryable<ReportingParty> GetDataByPhone1TypeId(int phone1TypeId)
+        public IQueryable<ReportingParty> GetDataByphoneTypeId(int phoneTypeId)
         {
-            return _dbRepository.GetDataByPhone1TypeId(phone1TypeId).AsQueryable();
+            return _dbRepository.GetDataByphoneTypeId(phoneTypeId).AsQueryable();
         }
 
-        [Route("api/phoneTypes/{phone1TypeId}/reportingParties",
-            Name = "ReportingPartiesGetDataByPhone1TypeIdPageableRoute")]
+        [Route("api/phoneTypes/{phoneTypeId}/reportingParties",
+            Name = "ReportingPartiesGetDataByphoneTypeIdPageableRoute")]
         [HttpGet]
-        public HttpResponseMessage GetDataByPhone1TypeIdPageable(int phone1TypeId, string sortExpression, int page,
+        public HttpResponseMessage GetDataByphoneTypeIdPageable(int phoneTypeId, string sortExpression, int page,
             int pageSize)
         {
             if (page < 1) return Request.CreateResponse(HttpStatusCode.BadRequest);
-            var results = _dbRepository.GetDataByPhone1TypeIdPageable(phone1TypeId, sortExpression, page, pageSize);
+            var results = _dbRepository.GetDataByphoneTypeIdPageable(phoneTypeId, sortExpression, page, pageSize);
 
             return Request.CreateResponse(HttpStatusCode.OK, results);
         }
 
-        [Route("api/phoneTypes/{phone2TypeId}/reportingParties/all", Name = "ReportingPartiesGetDataByPhone2TypeIdRoute"
-            )]
-        [HttpGet]
-        public IQueryable<ReportingParty> GetDataByPhone2TypeId(int phone2TypeId)
-        {
-            return _dbRepository.GetDataByPhone2TypeId(phone2TypeId).AsQueryable();
-        }
-
-        [Route("api/phoneTypes/{phone2TypeId}/reportingParties",
-            Name = "ReportingPartiesGetDataByPhone2TypeIdPageableRoute")]
-        [HttpGet]
-        public HttpResponseMessage GetDataByPhone2TypeIdPageable(int phone2TypeId, string sortExpression, int page,
-            int pageSize)
-        {
-            if (page < 1) return Request.CreateResponse(HttpStatusCode.BadRequest);
-            var results = _dbRepository.GetDataByPhone2TypeIdPageable(phone2TypeId, sortExpression, page, pageSize);
-
-            return Request.CreateResponse(HttpStatusCode.OK, results);
-        }
+        
 
         [Route("api/reportingParties", Name = "ReportingPartiesGetDataPageableRoute")]
         [HttpGet]
@@ -110,16 +99,18 @@ namespace QuickComplaint.Web.UI.Controllers.Api
         [HttpPost]
         public int Insert(ReportingParty reportingParty)
         {
-            return _dbRepository.Insert(reportingParty.Name, reportingParty.Email, reportingParty.Phone1,
-                reportingParty.Phone1TypeId, reportingParty.Phone2, reportingParty.Phone2TypeId);
+            return _dbRepository.Insert(reportingParty.Name, reportingParty.Email, reportingParty.phone,
+                reportingParty.phoneTypeId);
         }
 
         [Route("api/reportingParties", Name = "ReportingPartiesUpdateRoute")]
         [HttpPut]
         public void Update(ReportingParty reportingParty)
         {
-            _dbRepository.Update(reportingParty.Name, reportingParty.Email, reportingParty.Phone1,
-                reportingParty.Phone1TypeId, reportingParty.Phone2, reportingParty.Phone2TypeId, reportingParty.Id);
+            _dbRepository.Update(reportingParty.Name, reportingParty.Email, reportingParty.phone,
+                reportingParty.phoneTypeId,  reportingParty.Id);
         }
+
+        
     }
 }

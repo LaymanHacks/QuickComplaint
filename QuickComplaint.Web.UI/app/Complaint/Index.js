@@ -2,9 +2,9 @@
     "use strict";
 
     var controllerId = "complaintIndexCtrl";
-    angular.module("app").controller(controllerId, ["common", "complaintDataService", complaintIndexCtrl]);
+    angular.module("app").controller(controllerId, ["common", "complaintDetailDataService", complaintIndexCtrl]);
 
-    function complaintIndexCtrl(common, complaintDataService) {
+    function complaintIndexCtrl(common,  complaintDetailDataService) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
@@ -19,7 +19,7 @@
         vm.sortExpression = "";
         vm.currentPage = 1;
         vm.pageSize = 10;
-        vm.deleteComplaint = deleteComplaint;
+       
 
         activate();
 
@@ -34,14 +34,12 @@
         }
 
         function getDataPageable(sortExpression, page, pageSize) {
-            return complaintDataService.getDataPageable(sortExpression, page, pageSize)
+            return complaintDetailDataService.getDataPageable(sortExpression, page, pageSize)
                 .then(function(results) {
                     return vm.pageableResults = results.data;
                 });
         }
 
-        function deleteComplaint(complaintId) {
-            return complaintDataService.deleteComplaint(complaintId);
-        };
+        
     }
 })();

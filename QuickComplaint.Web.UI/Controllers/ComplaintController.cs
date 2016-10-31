@@ -33,8 +33,8 @@ namespace QuickComplaint.Web.UI.Controllers
         // GET: Complaint/Create
         public ActionResult Create()
         {
-            ViewBag.ComplaintTypes = new SelectList(_dbComplaintTypeRepository.GetData(), "Id", "Id");
-            ViewBag.ReportingParties = new SelectList(_dbReportingPartyRepository.GetData(), "Id", "Id");
+            ViewBag.ComplaintTypes = new SelectList(_dbComplaintTypeRepository.GetData(), "Id", "Name");
+            ViewBag.ReportingParties = new SelectList(_dbReportingPartyRepository.GetData(), "Id", "Name");
 
             return View();
         }
@@ -67,10 +67,10 @@ namespace QuickComplaint.Web.UI.Controllers
         {
             var complaint = _dbComplaintRepository.GetDataById(id).FirstOrDefault();
             if (complaint != null)
-                ViewBag.ComplaintTypes = new SelectList(_dbComplaintTypeRepository.GetData(), "Id", "Id",
+                ViewBag.ComplaintTypes = new SelectList(_dbComplaintTypeRepository.GetData(), "Id", "Name",
                     complaint.ComplaintTypeId);
             if (complaint != null)
-                ViewBag.ReportingParties = new SelectList(_dbReportingPartyRepository.GetData(), "Id", "Id",
+                ViewBag.ReportingParties = new SelectList(_dbReportingPartyRepository.GetData(), "Id", "Name",
                     complaint.ReportingPartyId);
 
             return View(complaint);

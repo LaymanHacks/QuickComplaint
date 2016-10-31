@@ -48,9 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IDbCommandProvider\IDbComplaintCommandProvider.vb" />
+    <Compile Include="Interfaces\IDbCommandProvider\IDbComplaintDetailCommandProvider.vb" />
     <Compile Include="Interfaces\IDbCommandProvider\IDbComplaintTypeCommandProvider.vb" />
     <Compile Include="Interfaces\IDbCommandProvider\IDbPhoneTypeCommandProvider.vb" />
     <Compile Include="Interfaces\IDbCommandProvider\IDbReportingPartyCommandProvider.vb" />
+    <Compile Include="Interfaces\IRepository\IComplaintDetailRepository.vb" />
     <Compile Include="Interfaces\IRepository\IComplaintRepository.vb" />
     <Compile Include="Interfaces\IRepository\IComplaintTypeRepository.vb" />
     <Compile Include="Interfaces\IRepository\IPhoneTypeRepository.vb" />

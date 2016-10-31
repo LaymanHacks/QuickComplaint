@@ -39,16 +39,16 @@
             return $http.get("/api/reportingParties/" + id);
         };
 
-        this.getDataByPhone1TypeId = function(phone1TypeId) {
-            return $http.get("/api/phoneTypes/" + phone1TypeId + "/reportingParties/all");
+        this.getDataByphoneTypeId = function(phoneTypeId) {
+            return $http.get("/api/phoneTypes/" + phoneTypeId + "/reportingParties/all");
         };
 
-        this.getDataByPhone1TypeIdPageable = function(phone1TypeId, sortExpression, page, pageSize) {
+        this.getDataByphoneTypeIdPageable = function(phoneTypeId, sortExpression, page, pageSize) {
             return $http({
-                url: "/api/phoneTypes/" + phone1TypeId + "/reportingParties",
+                url: "/api/phoneTypes/" + phoneTypeId + "/reportingParties",
                 method: "GET",
                 params: {
-                    phone1TypeId: phone1TypeId || "",
+                    phoneTypeId: phoneTypeId || "",
                     sortExpression: sortExpression || "",
                     page: page || "",
                     pageSize: pageSize || ""
@@ -73,6 +73,16 @@
             });
         };
 
+        this.search = function (searchValue) {
+            return $http({
+                url: "/api/reportingParties/search",
+                method: "GET",
+                params: {
+                    searchValue: searchValue || ""
+                }
+            });
+            
+        };
 
     }
 })();
