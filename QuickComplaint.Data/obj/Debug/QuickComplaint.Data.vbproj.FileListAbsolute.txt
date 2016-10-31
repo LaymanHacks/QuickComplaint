@@ -1,7 +1,7 @@
-C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data\obj\Debug\QuickComplaint.Data.vbprojResolveAssemblyReference.cache
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data\bin\Debug\QuickComplaint.Data.dll
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data\bin\Debug\QuickComplaint.Data.pdb
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data\bin\Debug\QuickComplaint.Data.Entities.dll
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data\bin\Debug\QuickComplaint.Data.Entities.pdb
+C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data\obj\Debug\QuickComplaint.Data.vbprojResolveAssemblyReference.cache
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data\obj\Debug\QuickComplaint.Data.dll
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data\obj\Debug\QuickComplaint.Data.pdb

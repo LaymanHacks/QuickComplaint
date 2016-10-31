@@ -1,18 +1,18 @@
 @model IEnumerable<QuickComplaint.Data.Entities.Complaint>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Complaints";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Complaints</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create","" , new { @class = "btn btn-primary", @role = "button" })
 </p>
 <div ng-controller="complaintIndexCtrl as vm">
     <div style="float: right" class="btn-group" uib-dropdown>
-        <button type="button" class="btn btn-primary">{{vm.pageSize}} Items per page</button>
+        <button type="button" class="btn btn-info">{{vm.pageSize}} Items per page</button>
         <button type="button" class="btn dropdown-toggle" uib-dropdown-toggle>
             <span class="caret"></span>
             <span class="sr-only">Split button!</span>
@@ -29,6 +29,7 @@
             </li>
         </ul>
     </div>
+
     <table class="table">
         <tr>
 

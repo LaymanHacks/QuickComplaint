@@ -19,11 +19,9 @@
 
                         <div class="form-group">
                             <label for="locationDetails">Location</label>
-                            <input type="text" id="locationDetails" required class="form-control" ng-model="vm.complaint.locationDetails" uib-typeahead="address for address in vm.getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults"/>
+                            <input type="text" id="locationDetails" required class="form-control" ng-model="vm.complaint.locationDetails" uib-typeahead="address for address in vm.getLocation($viewValue)" typeahead-loading="loadingLocations" />
                             <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-                            <div ng-show="noResults">
-                                <i class="glyphicon glyphicon-remove"></i> No Results Found
-                            </div>
+                            
                         </div>
 
 
@@ -71,6 +69,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-12 ">
+                    <input type="button" class="btn btn-default" ng-click="vm.cancelComplaint()" value="Cancel" />
                     <input type="button" ng-disabled="createComplaint.$invalid" ng-click="vm.createComplaint()" value="Create" class="btn btn-primary"/>
                 </div>
             </div>

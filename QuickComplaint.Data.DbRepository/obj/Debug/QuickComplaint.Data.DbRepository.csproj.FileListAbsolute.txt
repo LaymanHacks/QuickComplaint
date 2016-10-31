@@ -1,9 +1,9 @@
-C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.DbRepository\obj\Debug\QuickComplaint.Data.DbRepository.csprojResolveAssemblyReference.cache
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.DbRepository\bin\Debug\QuickComplaint.Data.DbRepository.dll
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.DbRepository\bin\Debug\QuickComplaint.Data.DbRepository.pdb
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.DbRepository\bin\Debug\QuickComplaint.Data.dll
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.DbRepository\bin\Debug\QuickComplaint.Data.Entities.dll
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.DbRepository\bin\Debug\QuickComplaint.Data.Entities.pdb
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.DbRepository\bin\Debug\QuickComplaint.Data.pdb
+C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.DbRepository\obj\Debug\QuickComplaint.Data.DbRepository.csprojResolveAssemblyReference.cache
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.DbRepository\obj\Debug\QuickComplaint.Data.DbRepository.dll
 C:\Users\Mark\Desktop\QuickComplaint\QuickComplaint.Data.DbRepository\obj\Debug\QuickComplaint.Data.DbRepository.pdb

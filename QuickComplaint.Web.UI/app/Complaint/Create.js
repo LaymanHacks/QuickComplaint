@@ -32,6 +32,7 @@
         };
         
         vm.createComplaint = createComplaint;
+        vm.cancelComplaint = cancelComplaint;
         vm.getLocation = getLocation;
         vm.getReportingParties = getReportingParties;
         vm.reportingPartySelected = reportingPartySelected;
@@ -50,6 +51,10 @@
                 .then(function (results) {
                    $window.location.href = "/complaint";
                });
+        }
+
+        function cancelComplaint() {
+            $window.location.href = "/complaint";
         }
 
         function getComplaintTypes() {
