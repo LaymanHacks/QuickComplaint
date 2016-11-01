@@ -1,29 +1,30 @@
-﻿(function () {
-    'use strict';
+﻿(function() {
+    "use strict";
 
-    var app = angular.module('app');
+    var app = angular.module("app");
 
     // Collect the routes
-    app.constant('routes', getRoutes());
-    
+    app.constant("routes", getRoutes());
+
     // Configure the routes and route resolvers
-    app.config(['$routeProvider', 'routes', routeConfigurator]);
+    app.config(["$routeProvider", "routes", routeConfigurator]);
+
     function routeConfigurator($routeProvider, routes) {
 
-        routes.forEach(function (r) {
+        routes.forEach(function(r) {
             $routeProvider.when(r.url, r.config);
         });
-        $routeProvider.otherwise({ redirectTo: '/' });
+        $routeProvider.otherwise({ redirectTo: "/" });
     }
 
     // Define the routes 
     function getRoutes() {
         return [
             {
-                url: '/admin',
+                url: "/admin",
                 config: {
-                    title: 'admin',
-                    templateUrl: 'app/admin/admin.html',
+                    title: "admin",
+                    templateUrl: "app/admin/admin.html",
                     settings: {
                         nav: 2,
                         content: '<i class="fa fa-lock"></i> Admin'

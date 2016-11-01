@@ -20,7 +20,7 @@ namespace QuickComplaint.Data.Entities
         private string _name;
         private string _phone;
         private int? _phoneTypeId;
-        
+
 
         public ReportingParty()
         {
@@ -33,7 +33,6 @@ namespace QuickComplaint.Data.Entities
             _email = email;
             _phone = phone;
             _phoneTypeId = phoneTypeId;
-         
         }
 
         public virtual Collection<Complaint> Complaints { get; set; }
@@ -96,7 +95,5 @@ namespace QuickComplaint.Data.Entities
 
 
         public virtual PhoneType phoneTypePhoneType { get; set; }
-
-       
     }
 }

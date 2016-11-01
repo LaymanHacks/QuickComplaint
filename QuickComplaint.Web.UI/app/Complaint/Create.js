@@ -3,19 +3,29 @@
 
     var controllerId = "complaintCreateCtrl";
     angular.module("app")
-        .controller(controllerId, ["$window", "common", "complaintDataService", "complaintTypeDataService", "phoneTypeDataService", "reportingPartyDataService", "locationDataService", complaintCreateCtrl]);
+        .controller(controllerId,
+        [
+            "$window", "common", "complaintDataService", "complaintTypeDataService", "phoneTypeDataService",
+            "reportingPartyDataService", "locationDataService", complaintCreateCtrl
+        ]);
 
-    function complaintCreateCtrl($window, common, complaintDataService, complaintTypeDataService, phoneTypeDataService, reportingPartyDataService, locationDataService) {
+    function complaintCreateCtrl($window,
+        common,
+        complaintDataService,
+        complaintTypeDataService,
+        phoneTypeDataService,
+        reportingPartyDataService,
+        locationDataService) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
         var vm = this;
-       
+
         vm.title = "New Complaint";
         vm.complaintTypes = [];
         vm.phoneTypes = [];
         vm.reportingParties = [];
-       
+
         vm.complaint = {
             complaintTypeId: 1,
             description: "",
@@ -30,13 +40,13 @@
                 phoneTypeId: 1
             }
         };
-        
+
         vm.createComplaint = createComplaint;
         vm.cancelComplaint = cancelComplaint;
         vm.getLocation = getLocation;
         vm.getReportingParties = getReportingParties;
         vm.reportingPartySelected = reportingPartySelected;
-       
+
         activate();
 
 
@@ -45,12 +55,12 @@
             common.activateController(promises, controllerId)
                 .then(function() { log("Activated Create Complaint View"); });
         }
-        
+
         function createComplaint() {
-           return complaintDataService.insertComplaint(vm.complaint)
-                .then(function (results) {
-                   $window.location.href = "/complaint";
-               });
+            return complaintDataService.insertComplaint(vm.complaint)
+                .then(function(results) {
+                    $window.location.href = "/complaint";
+                });
         }
 
         function cancelComplaint() {
@@ -60,21 +70,22 @@
         function getComplaintTypes() {
             return complaintTypeDataService.getData()
                 .then(function(results) {
-                    return vm.complaintTypes = results.data;});
+                    return vm.complaintTypes = results.data;
+                });
         }
 
         function getPhoneTypes() {
             return phoneTypeDataService.getData()
-                .then(function (results) {
+                .then(function(results) {
                     return vm.phoneTypes = results.data;
                 });
         }
 
         function reportingPartySelected($item, $model, $label) {
             setReportingParty($item);
-        
+
         };
-        
+
 
         function setReportingParty(selectedParty) {
             vm.complaint.reportingParty.id = selectedParty.id;
@@ -83,22 +94,23 @@
             vm.complaint.reportingParty.phone = selectedParty.phone;
             vm.complaint.reportingParty.phoneTypeId = selectedParty.phoneTypeId;
             vm.complaint.reportingPartyId = selectedParty.id;
-            
+
         };
 
         function getReportingParties(val) {
             return reportingPartyDataService.search(val)
-               .then(function (results) {
-                   return vm.reportingParties = results.data;
-               });
+                .then(function(results) {
+                    return vm.reportingParties = results.data;
+                });
         }
 
         function getLocation(val) {
-            return locationDataService.getLocation(val).then(function(response){
-                return response.data.results.map(function(item){
-                    return item.formatted_address;
+            return locationDataService.getLocation(val)
+                .then(function(response) {
+                    return response.data.results.map(function(item) {
+                        return item.formatted_address;
+                    });
                 });
-            });
         };
 
     }

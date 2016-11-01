@@ -12,21 +12,34 @@ Imports System.Collections.Generic
 Imports QuickComplaint.Data.Entities
 
 
-Namespace QuickComplaint.Data.Repository     
+Namespace QuickComplaint.Data.Repository
     Public Interface IComplaintRepository
-        Function GetData()  as ICollection(Of Complaint)
-        Sub Update( ByVal complaintTypeId As Int32,  ByVal description As String,  ByVal locationDetails As String,  ByVal reportingPartyId As Int32,  ByVal id As Int32) 
-        Sub Update(ByVal complaint as Complaint) 
-        Sub Delete( ByVal id As Int32) 
-        Sub Delete(ByVal complaint as Complaint) 
-        Function Insert( ByVal complaintTypeId As Int32,  ByVal description As String,  ByVal locationDetails As String,  ByVal reportingPartyId As Int32)  as Int32
-        Function Insert(ByVal complaint as Complaint)  as Int32
-        Function GetDataPageable( ByVal sortExpression As String,  ByVal page As Int32,  ByVal pageSize As Int32)  as PagedResult(Of Complaint)
-        Function GetDataById( ByVal id As Int32)  as ICollection(Of Complaint)
-        Function GetDataByComplaintTypeId( ByVal complaintTypeId As Int32)  as ICollection(Of Complaint)
-        Function GetDataByComplaintTypeIdPageable( ByVal complaintTypeId As Int32,  ByVal sortExpression As String,  ByVal page As Int32,  ByVal pageSize As Int32)  as PagedResult(Of Complaint)
-        Function GetDataByReportingPartyId( ByVal reportingPartyId As Int32)  as ICollection(Of Complaint)
-        Function GetDataByReportingPartyIdPageable( ByVal reportingPartyId As Int32,  ByVal sortExpression As String,  ByVal page As Int32,  ByVal pageSize As Int32)  as PagedResult(Of Complaint)
-    End Interface 
+        Function GetData() as ICollection(Of Complaint)
+
+        Sub Update(complaintTypeId As Int32, description As String, locationDetails As String, reportingPartyId As Int32,
+                   id As Int32)
+
+        Sub Update(complaint as Complaint)
+        Sub Delete(id As Int32)
+        Sub Delete(complaint as Complaint)
+
+        Function Insert(complaintTypeId As Int32, description As String, locationDetails As String,
+                        reportingPartyId As Int32) as Int32
+
+        Function Insert(complaint as Complaint) as Int32
+
+        Function GetDataPageable(sortExpression As String, page As Int32, pageSize As Int32) _
+            as PagedResult(Of Complaint)
+
+        Function GetDataById(id As Int32) as ICollection(Of Complaint)
+        Function GetDataByComplaintTypeId(complaintTypeId As Int32) as ICollection(Of Complaint)
+
+        Function GetDataByComplaintTypeIdPageable(complaintTypeId As Int32, sortExpression As String, page As Int32,
+                                                  pageSize As Int32) as PagedResult(Of Complaint)
+
+        Function GetDataByReportingPartyId(reportingPartyId As Int32) as ICollection(Of Complaint)
+
+        Function GetDataByReportingPartyIdPageable(reportingPartyId As Int32, sortExpression As String, page As Int32,
+                                                   pageSize As Int32) as PagedResult(Of Complaint)
+    End Interface
 End NameSpace
-  

@@ -12,20 +12,25 @@ Imports System.Collections.Generic
 Imports QuickComplaint.Data.Entities
 
 
-Namespace QuickComplaint.Data.Repository     
+Namespace QuickComplaint.Data.Repository
     Public Interface IReportingPartyRepository
-        Function GetData()  as ICollection(Of ReportingParty)
-        Sub Update( ByVal name As String,  ByVal email As String,  ByVal phone As String,  ByVal phoneTypeId As  Nullable(Of Int32) ,  ByVal id As Int32) 
-        Sub Update(ByVal reportingParty as ReportingParty) 
-        Sub Delete( ByVal id As Int32) 
-        Sub Delete(ByVal reportingParty as ReportingParty) 
-        Function Insert(ByVal name As String, ByVal email As String, ByVal phone As String, ByVal phoneTypeId As Integer?)  as Integer
-        Function Insert(ByVal reportingParty as ReportingParty)  as Int32
-        Function GetDataPageable( ByVal sortExpression As String,  ByVal page As Int32,  ByVal pageSize As Int32)  as PagedResult(Of ReportingParty)
-        Function GetDataById( ByVal id As Int32)  as ICollection(Of ReportingParty)
-        Function GetDataByphoneTypeId( ByVal phoneTypeId As Int32)  as ICollection(Of ReportingParty)
-        Function GetDataByphoneTypeIdPageable( ByVal phoneTypeId As Int32,  ByVal sortExpression As String,  ByVal page As Int32,  ByVal pageSize As Int32)  as PagedResult(Of ReportingParty)
+        Function GetData() as ICollection(Of ReportingParty)
+        Sub Update(name As String, email As String, phone As String, phoneTypeId As Nullable(Of Int32), id As Int32)
+        Sub Update(reportingParty as ReportingParty)
+        Sub Delete(id As Int32)
+        Sub Delete(reportingParty as ReportingParty)
+        Function Insert(name As String, email As String, phone As String, phoneTypeId As Integer?) as Integer
+        Function Insert(reportingParty as ReportingParty) as Int32
+
+        Function GetDataPageable(sortExpression As String, page As Int32, pageSize As Int32) _
+            as PagedResult(Of ReportingParty)
+
+        Function GetDataById(id As Int32) as ICollection(Of ReportingParty)
+        Function GetDataByphoneTypeId(phoneTypeId As Int32) as ICollection(Of ReportingParty)
+
+        Function GetDataByphoneTypeIdPageable(phoneTypeId As Int32, sortExpression As String, page As Int32,
+                                              pageSize As Int32) as PagedResult(Of ReportingParty)
+
         Function Search(searchValue As String) as ICollection(Of ReportingParty)
-    End Interface 
+    End Interface
 End NameSpace
-  

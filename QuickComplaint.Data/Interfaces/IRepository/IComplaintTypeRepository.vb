@@ -9,21 +9,22 @@
 '------------------------------------------------------------------------------
 Imports System
 Imports System.Collections.Generic
-Imports QuickComplaint.Data
 Imports QuickComplaint.Data.Entities
 
-  
- Namespace QuickComplaint.Data.Repository     
+
+Namespace QuickComplaint.Data.Repository
     Public Interface IComplaintTypeRepository
-        Function GetData()  as ICollection(Of ComplaintType)
-        Sub Update( ByVal name As String,  ByVal id As Int32) 
-        Sub Update(ByVal complaintType as ComplaintType) 
-        Sub Delete( ByVal id As Int32) 
-        Sub Delete(ByVal complaintType as ComplaintType) 
-        Function Insert( ByVal name As String)  as Int32
-        Function Insert(ByVal complaintType as ComplaintType)  as Int32
-        Function GetDataPageable( ByVal sortExpression As String,  ByVal page As Int32,  ByVal pageSize As Int32)  as PagedResult(Of ComplaintType)
-        Function GetDataById( ByVal id As Int32)  as ICollection(Of ComplaintType)
-    End Interface 
+        Function GetData() as ICollection(Of ComplaintType)
+        Sub Update(name As String, id As Int32)
+        Sub Update(complaintType as ComplaintType)
+        Sub Delete(id As Int32)
+        Sub Delete(complaintType as ComplaintType)
+        Function Insert(name As String) as Int32
+        Function Insert(complaintType as ComplaintType) as Int32
+
+        Function GetDataPageable(sortExpression As String, page As Int32, pageSize As Int32) _
+            as PagedResult(Of ComplaintType)
+
+        Function GetDataById(id As Int32) as ICollection(Of ComplaintType)
+    End Interface
 End NameSpace
-  

@@ -60,11 +60,10 @@ namespace QuickComplaint.Data.Repository
         /// <param name="email"></param>
         /// <param name="phone"></param>
         /// <param name="phoneTypeId"></param>
-        
         /// <param name="id"></param>
         /// <remarks></remarks>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-        public void Update(string name, string email, string phone, int? phoneTypeId,int id)
+        public void Update(string name, string email, string phone, int? phoneTypeId, int id)
         {
             var command = _dbReportingPartyCommandProvider.GetUpdateDbCommand(name, email, phone, phoneTypeId, id);
             command.Connection = _dbConnHolder.Connection;
@@ -76,7 +75,8 @@ namespace QuickComplaint.Data.Repository
         [DataObjectMethod(DataObjectMethodType.Update, false)]
         public void Update(ReportingParty reportingParty)
         {
-            Update(reportingParty.Name, reportingParty.Email, reportingParty.phone, reportingParty.phoneTypeId, reportingParty.Id);
+            Update(reportingParty.Name, reportingParty.Email, reportingParty.phone, reportingParty.phoneTypeId,
+                reportingParty.Id);
         }
 
         /// <summary>
@@ -235,7 +235,6 @@ namespace QuickComplaint.Data.Repository
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="searchValue"></param>
         /// <returns></returns>
@@ -250,14 +249,13 @@ namespace QuickComplaint.Data.Repository
             var reader = new SafeDataReader(command.ExecuteReader(CommandBehavior.CloseConnection));
             while (reader.Read())
             {
-                var tempEntity = new ReportingParty(reader.GetInt32("Id"), reader.GetString("Name"), reader.GetString("Email"), reader.GetString("Phone"), reader.GetNullableInt32("PhoneTypeId"));
+                var tempEntity = new ReportingParty(reader.GetInt32("Id"), reader.GetString("Name"),
+                    reader.GetString("Email"), reader.GetString("Phone"), reader.GetNullableInt32("PhoneTypeId"));
                 entList.Add(tempEntity);
             }
             reader.Close();
             return entList;
-
         }
-
 
 
         /// <summary>
@@ -277,7 +275,6 @@ namespace QuickComplaint.Data.Repository
             return returnValue;
         }
 
-       
 
         /// <summary>
         ///     Function GetRowCount returns the row count for ReportingParty

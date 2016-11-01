@@ -19,4 +19,3 @@ namespace QuickComplaint.Web.UI
         }
     }
 }
-

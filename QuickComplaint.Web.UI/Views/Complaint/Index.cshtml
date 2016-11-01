@@ -8,7 +8,7 @@
 <h2>Complaints</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create","" , new { @class = "btn btn-primary", @role = "button" })
+    @Html.ActionLink("Create New", "Create", "", new {@class = "btn btn-primary", role = "button"})
 </p>
 <div ng-controller="complaintIndexCtrl as vm">
     <div style="float: right" class="btn-group" uib-dropdown>
@@ -80,7 +80,7 @@
             </td>
 
             <td>
-               <a href="/Complaint/Edit/{{item.id}}">Edit</a>
+                <a href="/Complaint/Edit/{{item.id}}">Edit</a>
             </td>
         </tr>
 
@@ -90,6 +90,6 @@
 </div>
 @section Scripts {
     <script src="~/app/Complaint/index.js"></script>
-<script src="~/app/services/ComplaintDataService.js"></script>
+    <script src="~/app/services/ComplaintDataService.js"></script>
     <script src="~/app/services/ComplaintDetailDataService.js"></script>
 }

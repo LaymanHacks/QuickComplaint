@@ -73,7 +73,7 @@
             });
         };
 
-        this.search = function (searchValue) {
+        this.search = function(searchValue) {
             return $http({
                 url: "/api/reportingParties/search",
                 method: "GET",
@@ -81,7 +81,7 @@
                     searchValue: searchValue || ""
                 }
             });
-            
+
         };
 
     }

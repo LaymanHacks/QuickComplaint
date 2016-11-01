@@ -1,11 +1,11 @@
-(function () {
-    'use strict';
+(function() {
+    "use strict";
 
     // Must configure the common service and set its 
     // events via the commonConfigProvider
 
-    angular.module('common')
-        .factory('spinner', ['common', 'commonConfig', spinner]);
+    angular.module("common")
+        .factory("spinner", ["common", "commonConfig", spinner]);
 
     function spinner(common, commonConfig) {
         var service = {

@@ -12,15 +12,14 @@ Imports System.Data
 
 Namespace QuickComplaint.Data.DbCommandProvider
     Public Interface IDbComplaintTypeCommandProvider
-        ReadOnly Property ComplaintTypeDbConnectionHolder() As DbConnectionHolder
+        ReadOnly Property ComplaintTypeDbConnectionHolder As DbConnectionHolder
         ReadOnly Property DbConnectionName As String
         Function GetGetDataDbCommand() As IDbCommand
-        Function GetUpdateDbCommand( ByVal name As String,  ByVal id As Int32) As IDbCommand
-        Function GetDeleteDbCommand( ByVal id As Int32) As IDbCommand
-        Function GetInsertDbCommand( ByVal name As String) As IDbCommand
-        Function GetGetDataPageableDbCommand( ByVal sortExpression As String,  ByVal page As Int32,  ByVal pageSize As Int32) As IDbCommand
+        Function GetUpdateDbCommand(name As String, id As Int32) As IDbCommand
+        Function GetDeleteDbCommand(id As Int32) As IDbCommand
+        Function GetInsertDbCommand(name As String) As IDbCommand
+        Function GetGetDataPageableDbCommand(sortExpression As String, page As Int32, pageSize As Int32) As IDbCommand
         Function GetGetRowCountDbCommand() As IDbCommand
-        Function GetGetDataByIdDbCommand( ByVal id As Int32) As IDbCommand
-
+        Function GetGetDataByIdDbCommand(id As Int32) As IDbCommand
     End Interface
 End Namespace

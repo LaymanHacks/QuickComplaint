@@ -20,10 +20,11 @@ namespace QuickComplaint.Web.UI.Controllers.Api
 {
     public class ComplaintApiController : ApiController
     {
-        private readonly IComplaintRepository _dbRepository;
         private readonly IReportingPartyRepository _dbReportingPartyRepository;
+        private readonly IComplaintRepository _dbRepository;
 
-        public ComplaintApiController(IComplaintRepository dbRepository, IReportingPartyRepository dbReportingPartyRepository)
+        public ComplaintApiController(IComplaintRepository dbRepository,
+            IReportingPartyRepository dbReportingPartyRepository)
         {
             _dbRepository = dbRepository;
             _dbReportingPartyRepository = dbReportingPartyRepository;

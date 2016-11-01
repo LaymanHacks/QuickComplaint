@@ -1,31 +1,33 @@
-(function () {
-    'use strict';
+(function() {
+    "use strict";
 
     // Define the common module 
     // Contains services:
     //  - common
     //  - logger
     //  - spinner
-    var commonModule = angular.module('common', []);
+    var commonModule = angular.module("common", []);
 
     // Must configure the common service and set its 
     // events via the commonConfigProvider
-    commonModule.provider('commonConfig', function () {
-        this.config = {
-            // These are the properties we need to set
-            //controllerActivateSuccessEvent: '',
-            //spinnerToggleEvent: ''
-        };
-
-        this.$get = function () {
-            return {
-                config: this.config
+    commonModule.provider("commonConfig",
+        function() {
+            this.config = {
+                // These are the properties we need to set
+                //controllerActivateSuccessEvent: '',
+                //spinnerToggleEvent: ''
+        
             };
-        };
-    });
 
-    commonModule.factory('common',
-        ['$q', '$rootScope', '$timeout', 'commonConfig', 'logger', common]);
+            this.$get = function() {
+                return {
+                    config: this.config
+                };
+            };
+        });
+
+    commonModule.factory("common",
+    ["$q", "$rootScope", "$timeout", "commonConfig", "logger", common]);
 
     function common($q, $rootScope, $timeout, commonConfig, logger) {
         var throttles = {};
@@ -47,10 +49,11 @@
         return service;
 
         function activateController(promises, controllerId) {
-            return $q.all(promises).then(function (eventArgs) {
-                var data = { controllerId: controllerId };
-                $broadcast(commonConfig.config.controllerActivateSuccessEvent, data);
-            });
+            return $q.all(promises)
+                .then(function(eventArgs) {
+                    var data = { controllerId: controllerId };
+                    $broadcast(commonConfig.config.controllerActivateSuccessEvent, data);
+                });
         }
 
         function $broadcast() {
@@ -66,13 +69,13 @@
             // if only vm and list parameters were passed, set others by naming convention 
             if (!filteredList) {
                 // assuming list is named sessions, filteredList is filteredSessions
-                filteredList = 'filtered' + list[0].toUpperCase() + list.substr(1).toLowerCase(); // string
+                filteredList = "filtered" + list[0].toUpperCase() + list.substr(1).toLowerCase(); // string
                 // filter function is named sessionFilter
-                filter = list + 'Filter'; // function in string form
+                filter = list + "Filter"; // function in string form
             }
 
             // create the filtering function we will call from here
-            var filterFn = function () {
+            var filterFn = function() {
                 // translates to ...
                 // vm.filteredSessions 
                 //      = vm.sessions.filter(function(item( { returns vm.sessionFilter (item) } );
@@ -81,7 +84,7 @@
                 });
             };
 
-            return (function () {
+            return (function() {
                 // Wrapped in outer IFFE so we can use closure 
                 // over filterInputTimeout which references the timeout
                 var filterInputTimeout;

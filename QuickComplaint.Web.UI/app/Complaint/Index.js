@@ -4,7 +4,7 @@
     var controllerId = "complaintIndexCtrl";
     angular.module("app").controller(controllerId, ["common", "complaintDetailDataService", complaintIndexCtrl]);
 
-    function complaintIndexCtrl(common,  complaintDetailDataService) {
+    function complaintIndexCtrl(common, complaintDetailDataService) {
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
 
@@ -19,7 +19,7 @@
         vm.sortExpression = "";
         vm.currentPage = 1;
         vm.pageSize = 10;
-       
+
 
         activate();
 
@@ -40,6 +40,6 @@
                 });
         }
 
-        
+
     }
 })();

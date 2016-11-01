@@ -61,11 +61,10 @@
             @Html.DisplayFor(model => model.phoneTypeId)
         </dd>
 
-     
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Cancel", "Index", "", new { @class = "btn btn-default", @role = "button" })
-    @Html.ActionLink("Edit", "Edit", new {id = Model.Id}, new { @class = "btn btn-primary", @role = "button" }) 
+    @Html.ActionLink("Cancel", "Index", "", new {@class = "btn btn-default", role = "button"})
+    @Html.ActionLink("Edit", "Edit", new {id = Model.Id}, new {@class = "btn btn-primary", role = "button"})
 </p>

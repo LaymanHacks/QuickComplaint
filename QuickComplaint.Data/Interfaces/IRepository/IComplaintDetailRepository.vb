@@ -9,14 +9,14 @@
 '------------------------------------------------------------------------------
 Imports System
 Imports System.Collections.Generic
-Imports QuickComplaint.Data
 Imports QuickComplaint.Data.Entities
 
-  
- Namespace QuickComplaint.Data.Repository     
+
+Namespace QuickComplaint.Data.Repository
     Public Interface IComplaintDetailRepository
-        Function GetData()  as ICollection(Of ComplaintDetail)
-        Function GetDataPageable( ByVal sortExpression As String,  ByVal page As Int32,  ByVal pageSize As Int32)  as PagedResult(Of ComplaintDetail)
-    End Interface 
+        Function GetData() as ICollection(Of ComplaintDetail)
+
+        Function GetDataPageable(sortExpression As String, page As Int32, pageSize As Int32) _
+            as PagedResult(Of ComplaintDetail)
+    End Interface
 End NameSpace
-  

@@ -9,21 +9,22 @@
 '------------------------------------------------------------------------------
 Imports System
 Imports System.Collections.Generic
-Imports QuickComplaint.Data
 Imports QuickComplaint.Data.Entities
 
-  
- Namespace QuickComplaint.Data.Repository     
+
+Namespace QuickComplaint.Data.Repository
     Public Interface IPhoneTypeRepository
-        Function GetData()  as ICollection(Of PhoneType)
-        Sub Update( ByVal name As String,  ByVal id As Int32) 
-        Sub Update(ByVal phoneType as PhoneType) 
-        Sub Delete( ByVal id As Int32) 
-        Sub Delete(ByVal phoneType as PhoneType) 
-        Function Insert( ByVal name As String)  as Int32
-        Function Insert(ByVal phoneType as PhoneType)  as Int32
-        Function GetDataPageable( ByVal sortExpression As String,  ByVal page As Int32,  ByVal pageSize As Int32)  as PagedResult(Of PhoneType)
-        Function GetDataById( ByVal id As Int32)  as ICollection(Of PhoneType)
-    End Interface 
+        Function GetData() as ICollection(Of PhoneType)
+        Sub Update(name As String, id As Int32)
+        Sub Update(phoneType as PhoneType)
+        Sub Delete(id As Int32)
+        Sub Delete(phoneType as PhoneType)
+        Function Insert(name As String) as Int32
+        Function Insert(phoneType as PhoneType) as Int32
+
+        Function GetDataPageable(sortExpression As String, page As Int32, pageSize As Int32) _
+            as PagedResult(Of PhoneType)
+
+        Function GetDataById(id As Int32) as ICollection(Of PhoneType)
+    End Interface
 End NameSpace
-  

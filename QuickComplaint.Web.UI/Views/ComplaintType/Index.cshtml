@@ -8,7 +8,7 @@
 <h2>Complaint Types</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create","", new { @class = "btn btn-primary", @role = "button" })
+    @Html.ActionLink("Create New", "Create", "", new {@class = "btn btn-primary", role = "button"})
 </p>
 <div ng-controller="complaintTypeIndexCtrl as vm">
     <div style="float: right" class="btn-group" uib-dropdown>
@@ -17,7 +17,7 @@
             <span class="caret"></span>
             <span class="sr-only">Split button!</span>
         </button>
-        <ul class="dropdown-menu" uib-dropdown-menu  role="menu">
+        <ul class="dropdown-menu" uib-dropdown-menu role="menu">
             <li>
                 <a href="#" ng-click="vm.pageSize=10;vm.pageChanged()">10</a>
             </li>
@@ -55,7 +55,7 @@
             </td>
 
             <td>
-              
+
                 <a href="/ComplaintType/Edit/{{item.id}}">Edit</a>
             </td>
         </tr>

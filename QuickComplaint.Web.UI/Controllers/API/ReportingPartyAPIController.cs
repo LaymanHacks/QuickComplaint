@@ -27,13 +27,6 @@ namespace QuickComplaint.Web.UI.Controllers.Api
             _dbRepository = dbRepository;
         }
 
-        [Route("api/reportingParties/search", Name = "ReportingPartiesSearchRoute")]
-        [HttpGet]
-        public IQueryable<ReportingParty> Search([FromUri]String searchValue)
-        {
-            return _dbRepository.Search(searchValue).AsQueryable();
-        }
-
         [Route("api/reportingParties", Name = "ReportingPartiesDeleteRoute")]
         [HttpDelete]
         public HttpResponseMessage Delete(int id)
@@ -83,7 +76,6 @@ namespace QuickComplaint.Web.UI.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, results);
         }
 
-        
 
         [Route("api/reportingParties", Name = "ReportingPartiesGetDataPageableRoute")]
         [HttpGet]
@@ -103,14 +95,19 @@ namespace QuickComplaint.Web.UI.Controllers.Api
                 reportingParty.phoneTypeId);
         }
 
+        [Route("api/reportingParties/search", Name = "ReportingPartiesSearchRoute")]
+        [HttpGet]
+        public IQueryable<ReportingParty> Search([FromUri] string searchValue)
+        {
+            return _dbRepository.Search(searchValue).AsQueryable();
+        }
+
         [Route("api/reportingParties", Name = "ReportingPartiesUpdateRoute")]
         [HttpPut]
         public void Update(ReportingParty reportingParty)
         {
             _dbRepository.Update(reportingParty.Name, reportingParty.Email, reportingParty.phone,
-                reportingParty.phoneTypeId,  reportingParty.Id);
+                reportingParty.phoneTypeId, reportingParty.Id);
         }
-
-        
     }
 }

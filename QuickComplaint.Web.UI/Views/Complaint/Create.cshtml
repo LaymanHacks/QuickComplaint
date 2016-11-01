@@ -1,6 +1,6 @@
 <form name="createComplaint">
 
-   
+
     <div ng-controller="complaintCreateCtrl as vm">
         <div class="form-horizontal">
 
@@ -19,9 +19,9 @@
 
                         <div class="form-group">
                             <label for="locationDetails">Location</label>
-                            <input type="text" id="locationDetails" required class="form-control" ng-model="vm.complaint.locationDetails" uib-typeahead="address for address in vm.getLocation($viewValue)" typeahead-loading="loadingLocations" />
+                            <input type="text" id="locationDetails" required class="form-control" ng-model="vm.complaint.locationDetails" uib-typeahead="address for address in vm.getLocation($viewValue)" typeahead-loading="loadingLocations"/>
                             <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-                            
+
                         </div>
 
 
@@ -32,10 +32,10 @@
                     </div>
                 </div>
                 <div class="col-md-4" style="background: -moz-linear-gradient(top, rgba(135, 135, 135, 1) 0%, rgba(206, 206, 206, 0.72) 100%); /* FF3.6-15 */
-                                                                                             background: -webkit-linear-gradient(top, rgba(135, 135, 135, 1) 0%, rgba(206, 206, 206, 0.72) 100%); /* Chrome10-25,Safari5.1-6 */
-                                                                                             background: linear-gradient(to bottom, rgba(135, 135, 135, 1) 0%, rgba(206, 206, 206, 0.72) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-                                                                                             border-radius: 10px;
-                                                                                             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#878787', endColorstr='#b8cecece', GradientType=0);">
+            background: -webkit-linear-gradient(top, rgba(135, 135, 135, 1) 0%, rgba(206, 206, 206, 0.72) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(135, 135, 135, 1) 0%, rgba(206, 206, 206, 0.72) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            border-radius: 10px;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#878787', endColorstr='#b8cecece', GradientType=0);">
                     <h4>Reporting Party</h4>
                     <div style="padding: 5px;">
 
@@ -55,8 +55,8 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" name="phone" id="phone" class="form-control" ng-model="vm.complaint.reportingParty.phone"    />
-                      
+                            <input type="text" name="phone" id="phone" class="form-control" ng-model="vm.complaint.reportingParty.phone"/>
+
                         </div>
                         <div class="form-group">
                             <label for="phoneType">Phone Type</label>
@@ -69,7 +69,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-12 ">
-                    <input type="button" class="btn btn-default" ng-click="vm.cancelComplaint()" value="Cancel" />
+                    <input type="button" class="btn btn-default" ng-click="vm.cancelComplaint()" value="Cancel"/>
                     <input type="button" ng-disabled="createComplaint.$invalid" ng-click="vm.createComplaint()" value="Create" class="btn btn-primary"/>
                 </div>
             </div>
