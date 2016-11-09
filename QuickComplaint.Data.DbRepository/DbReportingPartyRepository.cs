@@ -179,16 +179,16 @@ namespace QuickComplaint.Data.Repository
         }
 
         /// <summary>
-        ///     Function GetDataByphoneTypeId returns a IDataReader for ReportingParty
+        ///     Function GetDataByPhoneTypeId returns a IDataReader for ReportingParty
         /// </summary>
         /// <param name="phoneTypeId"></param>
         /// <returns></returns>
         /// <remarks></remarks>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public ICollection<ReportingParty> GetDataByphoneTypeId(int phoneTypeId)
+        public ICollection<ReportingParty> GetDataByPhoneTypeId(int phoneTypeId)
         {
-            var command = _dbReportingPartyCommandProvider.GetGetDataByphoneTypeIdDbCommand(phoneTypeId);
-            command.Connection = _dbConnHolder.Connection;
+            var command = _dbReportingPartyCommandProvider.GetGetDataByPhoneTypeIdDbCommand(phoneTypeId);
+            command.Connection = _dbConnHolder.Connection; 
             _dbConnHolder.Open();
             var entList = new Collection<ReportingParty>();
             var reader = new SafeDataReader(command.ExecuteReader(CommandBehavior.CloseConnection));
@@ -203,7 +203,7 @@ namespace QuickComplaint.Data.Repository
         }
 
         /// <summary>
-        ///     Function GetDataBy GetDataByphoneTypeIdPageable returns a IDataReader populated with a subset of data from
+        ///     Function GetDataBy GetDataByPhoneTypeIdPageable returns a IDataReader populated with a subset of data from
         ///     ReportingParty
         /// </summary>
         /// <param name="phoneTypeId"></param>
@@ -213,10 +213,10 @@ namespace QuickComplaint.Data.Repository
         /// <returns></returns>
         /// <remarks></remarks>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public PagedResult<ReportingParty> GetDataByphoneTypeIdPageable(int phoneTypeId, string sortExpression,
+        public PagedResult<ReportingParty> GetDataByPhoneTypeIdPageable(int phoneTypeId, string sortExpression,
             int page, int pageSize)
         {
-            var command = _dbReportingPartyCommandProvider.GetGetDataByphoneTypeIdPageableDbCommand(phoneTypeId,
+            var command = _dbReportingPartyCommandProvider.GetGetDataByPhoneTypeIdPageableDbCommand(phoneTypeId,
                 sortExpression, page, pageSize);
             command.Connection = _dbConnHolder.Connection;
             _dbConnHolder.Open();
@@ -229,7 +229,7 @@ namespace QuickComplaint.Data.Repository
                 entList.Add(tempEntity);
             }
             reader.Close();
-            var totalCount = GetDataByphoneTypeIdRowCount(phoneTypeId);
+            var totalCount = GetDataByPhoneTypeIdRowCount(phoneTypeId);
             var pagedResults = new PagedResult<ReportingParty>(page, pageSize, totalCount, entList);
             return pagedResults;
         }
@@ -265,9 +265,9 @@ namespace QuickComplaint.Data.Repository
         /// <returns></returns>
         /// <remarks></remarks>
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public int GetDataByphoneTypeIdRowCount(int phoneTypeId)
+        public int GetDataByPhoneTypeIdRowCount(int phoneTypeId)
         {
-            var command = _dbReportingPartyCommandProvider.GetGetDataByphoneTypeIdRowCountDbCommand(phoneTypeId);
+            var command = _dbReportingPartyCommandProvider.GetGetDataByPhoneTypeIdRowCountDbCommand(phoneTypeId);
             command.Connection = _dbConnHolder.Connection;
             _dbConnHolder.Open();
             var returnValue = Convert.ToInt32(command.ExecuteScalar());

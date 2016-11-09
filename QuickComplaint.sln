@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickComplaint.Data.Entities", "QuickComplaint.Data.Entities\QuickComplaint.Data.Entities.csproj", "{07F3DEED-1B45-4CF5-9F0B-A3532E9D0B69}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "QuickComplaint.Data", "QuickComplaint.Data\QuickComplaint.Data.vbproj", "{14B004DB-0D79-4719-B4AE-33CE00115AA3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickComplaint.Data.DbRepository", "QuickComplaint.Data.DbRepository\QuickComplaint.Data.DbRepository.csproj", "{F8307748-4070-4F2D-B112-291D68CE981D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickComplaint.Data.SqlClient", "QuickComplaint.Data.SQLClient\QuickComplaint.Data.SqlClient.csproj", "{FB3CD5E2-255E-4C81-811F-809F72248B8F}"
@@ -30,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Setup_DB.sql = Setup_DB.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickComplaint.Data", "QuickComplaint.Data\QuickComplaint.Data.csproj", "{6591E772-D297-4301-BC48-C13513CF4F68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,10 +40,6 @@ Global
 		{07F3DEED-1B45-4CF5-9F0B-A3532E9D0B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07F3DEED-1B45-4CF5-9F0B-A3532E9D0B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07F3DEED-1B45-4CF5-9F0B-A3532E9D0B69}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14B004DB-0D79-4719-B4AE-33CE00115AA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14B004DB-0D79-4719-B4AE-33CE00115AA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14B004DB-0D79-4719-B4AE-33CE00115AA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14B004DB-0D79-4719-B4AE-33CE00115AA3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F8307748-4070-4F2D-B112-291D68CE981D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F8307748-4070-4F2D-B112-291D68CE981D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8307748-4070-4F2D-B112-291D68CE981D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,16 +55,20 @@ Global
 		{B139403E-693A-4B9C-A52E-B341AED5E831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B139403E-693A-4B9C-A52E-B341AED5E831}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B139403E-693A-4B9C-A52E-B341AED5E831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6591E772-D297-4301-BC48-C13513CF4F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6591E772-D297-4301-BC48-C13513CF4F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6591E772-D297-4301-BC48-C13513CF4F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6591E772-D297-4301-BC48-C13513CF4F68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{07F3DEED-1B45-4CF5-9F0B-A3532E9D0B69} = {C4A4C2B3-E4A2-4B61-9ADD-6187FACC266A}
-		{14B004DB-0D79-4719-B4AE-33CE00115AA3} = {C4A4C2B3-E4A2-4B61-9ADD-6187FACC266A}
 		{F8307748-4070-4F2D-B112-291D68CE981D} = {2E3C7D4B-3751-40CC-8B2C-2F40003AE588}
 		{FB3CD5E2-255E-4C81-811F-809F72248B8F} = {2E3C7D4B-3751-40CC-8B2C-2F40003AE588}
 		{BFBCB099-CAC4-48F5-A65F-4298A6B72BF6} = {D87CDC77-1540-4BAC-BDD5-66C4AE130B9A}
 		{B139403E-693A-4B9C-A52E-B341AED5E831} = {85A0832F-E18A-4273-959F-33FB1168DE93}
+		{6591E772-D297-4301-BC48-C13513CF4F68} = {C4A4C2B3-E4A2-4B61-9ADD-6187FACC266A}
 	EndGlobalSection
 EndGlobal

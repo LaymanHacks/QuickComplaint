@@ -54,8 +54,8 @@
     <Compile Include="SqlParameterFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QuickComplaint.Data\QuickComplaint.Data.vbproj">
-      <Project>{14B004DB-0D79-4719-B4AE-33CE00115AA3}</Project>
+    <ProjectReference Include="..\QuickComplaint.Data\QuickComplaint.Data.csproj">
+      <Project>{6591E772-D297-4301-BC48-C13513CF4F68}</Project>
       <Name>QuickComplaint.Data</Name>
     </ProjectReference>
   </ItemGroup>

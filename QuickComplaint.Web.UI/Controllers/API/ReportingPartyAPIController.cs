@@ -61,7 +61,7 @@ namespace QuickComplaint.Web.UI.Controllers.Api
         [HttpGet]
         public IQueryable<ReportingParty> GetDataByphoneTypeId(int phoneTypeId)
         {
-            return _dbRepository.GetDataByphoneTypeId(phoneTypeId).AsQueryable();
+            return _dbRepository.GetDataByPhoneTypeId(phoneTypeId).AsQueryable();
         }
 
         [Route("api/phoneTypes/{phoneTypeId}/reportingParties",
@@ -71,7 +71,7 @@ namespace QuickComplaint.Web.UI.Controllers.Api
             int pageSize)
         {
             if (page < 1) return Request.CreateResponse(HttpStatusCode.BadRequest);
-            var results = _dbRepository.GetDataByphoneTypeIdPageable(phoneTypeId, sortExpression, page, pageSize);
+            var results = _dbRepository.GetDataByPhoneTypeIdPageable(phoneTypeId, sortExpression, page, pageSize);
 
             return Request.CreateResponse(HttpStatusCode.OK, results);
         }

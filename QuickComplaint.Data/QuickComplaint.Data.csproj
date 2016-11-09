@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" xmlns:merlinFunc="urn:merlin-xslt" xmlns:msd="urn:schemas-microsoft-com:xml-msdatasource" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" xmlns:msd="urn:schemas-microsoft-com:xml-msdatasource" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{14B004DB-0D79-4719-B4AE-33CE00115AA3}</ProjectGuid>
+    <ProjectGuid>{6591E772-D297-4301-BC48-C13513CF4F68}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace />
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuickComplaint.Data</RootNamespace>
     <AssemblyName>QuickComplaint.Data</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
@@ -16,9 +17,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <DefineDebug>true</DefineDebug>
-    <DefineTrace>true</DefineTrace>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,22 +46,23 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IDbCommandProvider\IDbComplaintCommandProvider.vb" />
-    <Compile Include="Interfaces\IDbCommandProvider\IDbComplaintDetailCommandProvider.vb" />
-    <Compile Include="Interfaces\IDbCommandProvider\IDbComplaintTypeCommandProvider.vb" />
-    <Compile Include="Interfaces\IDbCommandProvider\IDbPhoneTypeCommandProvider.vb" />
-    <Compile Include="Interfaces\IDbCommandProvider\IDbReportingPartyCommandProvider.vb" />
-    <Compile Include="Interfaces\IRepository\IComplaintDetailRepository.vb" />
-    <Compile Include="Interfaces\IRepository\IComplaintRepository.vb" />
-    <Compile Include="Interfaces\IRepository\IComplaintTypeRepository.vb" />
-    <Compile Include="Interfaces\IRepository\IPhoneTypeRepository.vb" />
-    <Compile Include="Interfaces\IRepository\IReportingPartyRepository.vb" />
-    <Compile Include="ConnectionHelper.vb" />
-    <Compile Include="PagedResult.vb" />
+    <Compile Include="Interfaces\IDbCommandProvider\IDbComplaintCommandProvider.cs" />
+    <Compile Include="Interfaces\IDbCommandProvider\IDbComplaintDetailCommandProvider.cs" />
+    <Compile Include="Interfaces\IDbCommandProvider\IDbComplaintTypeCommandProvider.cs" />
+    <Compile Include="Interfaces\IDbCommandProvider\IDbPhoneTypeCommandProvider.cs" />
+    <Compile Include="Interfaces\IDbCommandProvider\IDbReportingPartyCommandProvider.cs" />
+    <Compile Include="Interfaces\IRepository\IComplaintDetailRepository.cs" />
+    <Compile Include="Interfaces\IRepository\IComplaintRepository.cs" />
+    <Compile Include="Interfaces\IRepository\IComplaintTypeRepository.cs" />
+    <Compile Include="Interfaces\IRepository\IPhoneTypeRepository.cs" />
+    <Compile Include="Interfaces\IRepository\IReportingPartyRepository.cs" />
+    <Compile Include="ConnectionHelper.cs" />
+    <Compile Include="PagedResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QuickComplaint.Data.Entities\QuickComplaint.Data.Entities.csproj">
@@ -66,5 +70,5 @@
       <Name>QuickComplaint.Data.Entities</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

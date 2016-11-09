@@ -192,14 +192,14 @@ namespace QuickComplaint.Data.SqlDbCommandProvider
         }
 
         /// <summary>
-        ///     Function GetDataByphoneTypeId returns a IDataReader for ReportingParty
+        ///     Function GetDataByPhoneTypeId returns a IDataReader for ReportingParty
         /// </summary>
         /// <param name="phoneTypeId" />
         /// <returns></returns>
         /// <remarks></remarks>
-        public IDbCommand GetGetDataByphoneTypeIdDbCommand(int phoneTypeId)
+        public IDbCommand GetGetDataByPhoneTypeIdDbCommand(int phoneTypeId)
         {
-            var command = new SqlCommand("ReportingParty_GetDataByphoneTypeId");
+            var command = new SqlCommand("ReportingParty_GetDataByPhoneTypeId");
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.Add(SqlParameterFactory.CreateInputParameter("@phoneTypeId", SqlDbType.Int, phoneTypeId));
             command.Connection = (SqlConnection) ReportingPartyDbConnectionHolder.Connection;
@@ -207,7 +207,7 @@ namespace QuickComplaint.Data.SqlDbCommandProvider
         }
 
         /// <summary>
-        ///     Function GetDataBy GetDataByphoneTypeIdPageable returns a IDataReader populated with a subset of data from
+        ///     Function GetDataBy GetDataByPhoneTypeIdPageable returns a IDataReader populated with a subset of data from
         ///     ReportingParty
         /// </summary>
         /// <param name="phoneTypeId" />
@@ -216,10 +216,10 @@ namespace QuickComplaint.Data.SqlDbCommandProvider
         /// <param name="pageSize" />
         /// <returns></returns>
         /// <remarks></remarks>
-        public IDbCommand GetGetDataByphoneTypeIdPageableDbCommand(int phoneTypeId, string sortExpression, int page,
+        public IDbCommand GetGetDataByPhoneTypeIdPageableDbCommand(int phoneTypeId, string sortExpression, int page,
             int pageSize)
         {
-            var command = new SqlCommand("ReportingParty_GetDataByphoneTypeIdPageable");
+            var command = new SqlCommand("ReportingParty_GetDataByPhoneTypeIdPageable");
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.Add(SqlParameterFactory.CreateInputParameter("@phoneTypeId", SqlDbType.Int, phoneTypeId));
             command.Parameters.Add(SqlParameterFactory.CreateInputParameter("@sortExpression", SqlDbType.VarChar,
@@ -236,9 +236,9 @@ namespace QuickComplaint.Data.SqlDbCommandProvider
         /// <param name="phoneTypeId" />
         /// <returns></returns>
         /// <remarks></remarks>
-        public IDbCommand GetGetDataByphoneTypeIdRowCountDbCommand(int phoneTypeId)
+        public IDbCommand GetGetDataByPhoneTypeIdRowCountDbCommand(int phoneTypeId)
         {
-            var command = new SqlCommand("ReportingParty_GetDataByphoneTypeIdRowCount");
+            var command = new SqlCommand("ReportingParty_GetDataByPhoneTypeIdRowCount");
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.Add(SqlParameterFactory.CreateInputParameter("@phoneTypeId", SqlDbType.Int, phoneTypeId));
             command.Connection = (SqlConnection) ReportingPartyDbConnectionHolder.Connection;

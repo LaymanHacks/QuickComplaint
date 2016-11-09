@@ -98,10 +98,6 @@
       <Project>{07f3deed-1b45-4cf5-9f0b-a3532e9d0b69}</Project>
       <Name>QuickComplaint.Data.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\QuickComplaint.Data\QuickComplaint.Data.vbproj">
-      <Project>{14b004db-0d79-4719-b4ae-33ce00115aa3}</Project>
-      <Name>QuickComplaint.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\QuickComplaint.Web.UI\QuickComplaint.Web.UI.csproj">
       <Project>{bfbcb099-cac4-48f5-a65f-4298a6b72bf6}</Project>
       <Name>QuickComplaint.Web.UI</Name>
